@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 15:07:57 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 12:50:57 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/13 16:22:00 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,15 @@ typedef struct s_nm
 	int				fstat_result;
 	int				page_size;
 	int				arch_type;
-	char				*error;
+	int				version;
+	int				endian;
+	int				osabi;
+	u_int64_t		section_offset;
+	u_int64_t		entry_number;
+	u_int64_t		table_name;
+	u_int64_t		section_size;
+	u_int64_t		string_name_size;
+	char			*string_name;
 	struct stat		*stat;
 	void			*map_begin;
 	void			*map_end;

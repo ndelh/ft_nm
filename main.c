@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 16:00:06 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/13 17:51:02 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int ac, char **argv)
 	if (ac != 2)
 		return (1);
 	nm = init(argv[1]);
-	read_map(nm);
+	if (nm->map_begin)
+		read_map(nm);
 	ft_end(nm);
 }

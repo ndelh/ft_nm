@@ -6,7 +6,7 @@
 #    By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 17:08:53 by ndelhota          #+#    #+#              #
-#    Updated: 2026/04/13 11:40:19 by ndelhota         ###   ########.fr        #
+#    Updated: 2026/04/13 15:29:03 by ndelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC := main.c \
        init/init.c \
        utils/print.c \
        reading/reading.c \
-	   reading/parse.c \
+       reading/parse.c \
        end/end.c
 
 CC := cc
