@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   reading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 16:00:06 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/13 11:30:50 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/13 11:37:29 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#include "../ft_nm.h"
 
-int	main(int ac, char **argv)
+void	read_map(t_nm *nm)
 {
-	t_nm	*nm;
+	char	*s;
+	void	*end;
 
-	if (ac != 2)
-		return (1);
-	nm = init(argv[1]);
-	read_map(nm);
-	ft_end(nm);
+	end = nm->map_end + 1;
+	s = (char *)nm->map_begin;
+
+	while (s != end)
+	{
+		write(1, s, 1);
+		++s;
+	}
+	write(1, "\n", 1);
 }
+

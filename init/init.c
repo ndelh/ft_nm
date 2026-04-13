@@ -35,6 +35,7 @@ void	memory_init(t_nm *nm)
 	nm->map_begin = mmap(NULL, (size_t)nm->stat->st_size, PROT_READ, MAP_PRIVATE, nm->fd, 0);
 	if (nm->map_begin == MAP_FAILED)
 		print_error("nmap failed to allocate due to :");
+	nm->map_end = nm->map_begin + nm->stat->st_size;
 }
 
 t_nm	*init(char *s)

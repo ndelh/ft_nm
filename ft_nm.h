@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 15:07:57 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:22:40 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/13 11:39:59 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_nm
 	char				*error;
 	struct stat		*stat;
 	void			*map_begin;
+	void			*map_end;
 }	t_nm;
 
 /* init block */
@@ -39,6 +40,9 @@ t_nm	*init(char *s);
 
 /*utils */
 void	print_error(char *s);
+
+/* read and parse */
+void	read_map(t_nm* nm);
 
 /* end_block */
 void	ft_end(t_nm *nm);
