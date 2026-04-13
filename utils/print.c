@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 16:00:06 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/11 17:11:24 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/11 17:35:30 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#include "../ft_nm.h"
 
-int	main(int ac, char **argv)
+
+void	print_data(t_mn *nm)
 {
-	t_nm	*nm;
+	ft_putendl_fd("current data collected with fstat for the executable");
+}
 
-	if (ac != 2)
-		return (1);
-	nm = init(argv[1]);
-	ft_end(nm);
+void	print_error(char *s)
+{
+	char *a;
+
+	a = strerror(errno);
+	if (s)
+	{
+		ft_putendl_fd(s, 2);
+		ft_putchar_fd(32, 2);
+	}
+	ft_putendl_fd(a, 2);
 }

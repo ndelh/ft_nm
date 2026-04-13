@@ -6,13 +6,16 @@
 #    By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 17:08:53 by ndelhota          #+#    #+#              #
-#    Updated: 2026/04/11 14:05:50 by ndelhota         ###   ########.fr        #
+#    Updated: 2026/04/11 17:22:16 by ndelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := ft_nm 
 
 SRC := main.c \
+       init/init.c \
+       utils/print.c \
+       end/end.c
 
 CC := cc
 

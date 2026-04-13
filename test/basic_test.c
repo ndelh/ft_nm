@@ -1,23 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   basic_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 16:00:06 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/11 14:09:36 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/11 14:22:56 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+int	g_z;
+
+void	alloc_call(char *s)
+{
+	char	*c;
+
+	c = malloc(strlen(s) + 1);
+	if (!c)
+		return ;
+	free(c);
+	c = strdup(s);
+	printf("%s\n", c);
+	free(c);
+}
+
+void	empty_func(void)
+{
+}
 
 int	main(int ac, char **argv)
 {
-	t_nm	*nm;
-
 	if (ac != 2)
-		return (1);
-	nm = init(argv[1]);
-	ft_end(nm);
+		exit(1);
+	alloc_call(argv[1]);
 }
