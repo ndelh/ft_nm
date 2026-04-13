@@ -6,24 +6,27 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 12:41:13 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 13:18:27 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:00:22 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "reading.h"
 
-int	is_32(t_nm *nm)
+int	is_elf(t_nm *nm)
 {
-	(void)nm;
-	return (0);
-}
+	Elf64_Ehdr	*cursor;
 
-int	is_64(t_nm *nm)
-{
-	(void)nm;
-	if (nm->stat->st_size < 64)
+	cursor = (Elf64_Ehdr *)nm->map_begin;
+	if (ft_memcmp(cursor, ELFMAG, SELFMAG) != 0)
 	{
-		print_simple_error("Elf 64 binary cannot be less than 64 bytes");
+		print_simple_error("binary show invalid or non Elf header");
+		return (0);
+	}
+	nm->arch_type = (int)cursor->e_ident[4];
+	if (nm->arch_type == 2 && (nm->map_end - nm->map_begin < 64))
+	{
+		print_simple_error("Binary presented is too short for an ELF64 file");
+		nm->arch_type = 0;
 		return (0);
 	}
 	return (1);
@@ -31,7 +34,7 @@ int	is_64(t_nm *nm)
 
 int	ft_parse(t_nm *nm)
 {
-	if (is_32(nm))
-		return (1);
-	return (is_64(nm));
+	if (!is_elf(nm))
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/13 12:39:02 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 12:40:44 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/13 14:01:11 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 
 # include "../ft_nm.h"
 
-int ft_parse(t_nm* nm);
+int	ft_parse(t_nm *nm);
 #endif
