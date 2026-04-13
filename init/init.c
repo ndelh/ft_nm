@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 15:16:40 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:27:29 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/13 13:05:49 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,14 @@ void	memory_init(t_nm *nm)
 {
 	if (nm->fstat_result == -1)
 		return ;
+	if (nm->stat->st_size < 52)
+	{
+		print_simple_error("ELF binary file size cannot be less than 52 for Elf 32");
+		return ;
+	}
 	nm->map_begin = mmap(NULL, (size_t)nm->stat->st_size, PROT_READ, MAP_PRIVATE, nm->fd, 0);
 	if (nm->map_begin == MAP_FAILED)
-		print_error("nmap failed to allocate due to :");
+		print_error("nmap failed to allocate due to:");
 	nm->map_end = nm->map_begin + nm->stat->st_size;
 }
 

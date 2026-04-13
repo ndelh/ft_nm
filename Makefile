@@ -16,6 +16,7 @@ SRC := main.c \
        init/init.c \
        utils/print.c \
        reading/reading.c \
+	   reading/parse.c \
        end/end.c
 
 CC := cc

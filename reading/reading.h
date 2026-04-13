@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reading.c                                          :+:      :+:    :+:   */
+/*   reading.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/13 11:30:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 13:07:12 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/13 12:39:02 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/13 12:40:44 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "reading.h"
+#ifndef READING_H
+# define READING_H
 
-void	read_map(t_nm *nm)
-{
-	char	*s;
-	void	*end;
+# include "../ft_nm.h"
 
-	if (!ft_parse(nm))
-		return ;
-	end = nm->map_end + 1;
-	s = (char *)nm->map_begin;
-	while (s != end)
-	{
-		write(1, s, 1);
-		++s;
-	}
-}
-
+int ft_parse(t_nm* nm);
+#endif
