@@ -71,4 +71,5 @@ void	read_map(t_nm *nm)
 		write(1, s, 1);
 		++s;
 	}
+	retrieve_namestring(nm);
 }
