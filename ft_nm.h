@@ -62,10 +62,11 @@ int mul_overflow(uint64_t a, uint64_t b, char *s);
 int	add_range_overflow(uint64_t offset, uint64_t struct_size, uint64_t struct_nb, char *s);
 int	is_section_out(t_nm *nm, uint64_t offset, uint64_t struct_size, uint64_t struct_nb, char *s);
 int	is_offset_out(t_nm *nm, uint64_t offset, char *s);
+
 /* retrieve*/
 int	retrieve(t_nm *nm);
-/*symbols */
-void	symbols(t_nm *nm);
+/*	seek_symbols */
+void	seek_symbols(t_nm *nm);
 
 /* end_block */
 void	ft_end(t_nm *nm);

@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   seek_symbols.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 17:51:02 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/16 19:32:16 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/16 19:33:25 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#ifndef SEEK_SYMBOLS_H
+# define SEEK_SYMBOLS_H
 
-int	main(int ac, char **argv)
-{
-	t_nm	*nm;
+# include "../ft_nm.h"
 
-	if (ac != 2)
-		return (1);
-	nm = init(argv[1]);
-	if (nm->map_begin)
-		if (!retrieve(nm) && nm->section_header_nb)
-			seek_symbols(nm);
-	ft_end(nm);
-}
+#endif 

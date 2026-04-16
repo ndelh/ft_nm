@@ -21,6 +21,7 @@ SRC := main.c \
        retrieve/retrieve_16_bytes.c \
        retrieve/retrieve_shstr_content.c \
        retrieve/fetch.c \
+       seek_symbols/seek_symbols.c \
        end/end.c
 
 CC := cc
