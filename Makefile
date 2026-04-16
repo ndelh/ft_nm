@@ -6,7 +6,7 @@
 #    By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 17:08:53 by ndelhota          #+#    #+#              #
-#    Updated: 2026/04/14 09:34:28 by ndelhota         ###   ########.fr        #
+#    Updated: 2026/04/16 12:59:51 by ndelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ SRC := main.c \
        reading/reading.c \
        reading/parse.c \
        reading/parse_utils.c \
-       reading/retrieve.c \
+       reading/retrieve_namestring.c \
+       symbols/symbols.c \
+       symbols/retrieve_strtab.c \
        end/end.c
 
 CC := cc

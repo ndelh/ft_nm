@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   symbols.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 17:51:02 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/14 13:33:29 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/14 13:34:41 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#ifndef SYMBOLS_H
+# define SYMBOLS_H
 
-int	main(int ac, char **argv)
-{
-	t_nm	*nm;
+# include "../ft_nm.h"
 
-	if (ac != 2)
-		return (1);
-	nm = init(argv[1]);
-	if (nm->map_begin)
-	{
-		read_map(nm);
-		symbols(nm);
-	}
-	ft_end(nm);
-}
+void    retrieve_strtab(t_nm *nm);
+
+#endif

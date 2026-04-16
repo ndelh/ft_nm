@@ -20,11 +20,11 @@ int	parse_error(char *s)
 
 int	is_valid_namestring(t_nm *nm)
 {
-	if (!nm->string_name_size)
+	if (!nm->header_name_size)
 		return (parse_error("0 string name size"));
-	if (nm->string_name[0] != 0)
+	if (nm->header_name[0] != 0)
 		return (parse_error("invalid first char for tabstring"));
-	if (nm->string_name[nm->string_name_size - 1] != 0)
+	if (nm->header_name[nm->header_name_size - 1] != 0)
 		return (parse_error("non null terminated stringname"));
 	return (1);
 }

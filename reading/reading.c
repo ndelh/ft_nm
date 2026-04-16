@@ -71,5 +71,6 @@ void	read_map(t_nm *nm)
 		write(1, s, 1);
 		++s;
 	}
+	nm->section_begin = nm->map_begin + nm->section_offset;
 	retrieve_namestring(nm);
 }
