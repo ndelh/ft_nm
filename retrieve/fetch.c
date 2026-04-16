@@ -19,7 +19,7 @@ int	retrieve_variable_intel_32(t_nm *nm, Elf32_Ehdr *header)
 		ft_putendl_fd("Error: corrupted Elf header size", 2);
 		return (1);
 	}
-	if (header->e_shentsize != 52)
+	if (header->e_shentsize != 40)
 	{
 		ft_putendl_fd("corrupted programm header size", 2);
 		return (1);
