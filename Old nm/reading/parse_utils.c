@@ -48,7 +48,7 @@ int	check_addition_overflow(uint64_t a, uint64_t b)
 
 int	is_inbound(t_nm *nm, uint64_t offset)
 {
-	if (offset > (uint64_t)nm->stat->st_size)
+	if (offset > (uint64_t)nm->file_size)
 		return (0);
 	return (1);
 }

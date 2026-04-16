@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/13 15:01:17 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/17 09:21:36 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include "libft.h"
 
-void	close_fd(t_nm *nm)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	size_t	i;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, s + i);
+		i++;
+	}
 }

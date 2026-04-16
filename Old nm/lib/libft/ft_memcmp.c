@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 11:13:17 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/17 09:21:09 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "../ft_nm.h"
-
-void	close_fd(t_nm *nm)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	unsigned long int	i;
+	unsigned char		*p1;
+	unsigned char		*p2;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (!s1 && !s2)
+		return (0);
+	i = 0;
+	p1 = (unsigned char *)s1;
+	p2 = (unsigned char *)s2;
+	while (n--)
+	{
+		if (p1[i] != p2[i])
+			return (p1[i] - p2[i]);
+		i++;
+	}
+	return (0);
 }

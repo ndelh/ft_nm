@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/07 12:28:14 by ndelhota          #+#    #+#             */
+/*   Updated: 2025/03/20 12:59:36 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "../ft_nm.h"
-
-void	close_fd(t_nm *nm)
+size_t	ft_strlen(const char *str)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	size_t	i;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }

@@ -63,13 +63,13 @@ int	security_parse(t_nm *nm)
 	if (nm->entry_number && nm->section_size > 0xffffffffffffffff / nm->entry_number)
 		return (parse_error("overflow detected"));
 	tester =  nm->section_offset;
-	if (tester > (uint64_t)nm->stat->st_size)
+	if (tester > (uint64_t)nm->file_size)
 		return (parse_error("section offset lead to out of bound"));
 	store = tester;
 	tester += nm->section_size * nm->entry_number;
 	if (tester < store)
 		return (parse_error("overflow detected"));
-	if (tester > (uint64_t)nm->stat->st_size)
+	if (tester > (uint64_t)nm->file_size)
 		return (parse_error("atleat a part of section header is out of bound"));
 	if (nm->table_name >= nm->entry_number)
 		return (parse_error("out of bound tablename"));

@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/12 17:14:08 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/12 17:33:27 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "../ft_nm.h"
-
-void	close_fd(t_nm *nm)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	char	*join;
+	size_t	i;
+	size_t	j;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	join = ft_calloc(1, i + j + 1);
+	if (!join)
+		return (0);
+	ft_strlcat(join, s1, i + 1);
+	ft_strlcat(join, s2, i + j + 1);
+	return (join);
 }

@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 08:48:14 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/10 07:40:32 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "../ft_nm.h"
-
-void	close_fd(t_nm *nm)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	size_t				i;
+	unsigned char		*p;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	i = 0;
+	p = s;
+	while (i < n)
+	{
+		p[i] = c;
+		i++;
+	}
+	return (s);
 }

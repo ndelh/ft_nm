@@ -15,12 +15,12 @@ NAME := ft_nm
 SRC := main.c \
        init/init.c \
        utils/print.c \
-       utils/overflow_check.c \
-       utils/out_of_bound_check.c \
-       retrieve/retrieve.c \
-       retrieve/retrieve_16_bytes.c \
-       retrieve/retrieve_shstr_content.c \
-       retrieve/fetch.c \
+       reading/reading.c \
+       reading/parse.c \
+       reading/parse_utils.c \
+       reading/retrieve_namestring.c \
+       symbols/symbols.c \
+       symbols/retrieve_strtab.c \
        end/end.c
 
 CC := cc

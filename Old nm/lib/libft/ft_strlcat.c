@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/10 12:25:41 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/17 14:04:18 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include "libft.h"
 
-void	close_fd(t_nm *nm)
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	size_t	i;
+	size_t	j;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (n == 0 || n <= ft_strlen(dst))
+		return (n + ft_strlen(src));
+	i = ft_strlen(dst);
+	j = 0;
+	while (src[j] && i + 1 < n)
+		dst[i++] = src[j++];
+	dst[i] = '\0';
+	return (ft_strlen(dst) + ft_strlen(src + j));
 }

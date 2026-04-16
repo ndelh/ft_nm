@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isspace3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: agamay <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 17:51:02 by ndelhota         ###   ########.fr       */
+/*   Created: 2025/02/23 12:21:39 by agamay            #+#    #+#             */
+/*   Updated: 2025/02/23 12:22:59 by agamay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#include "libft.h"
 
-int	main(int ac, char **argv)
+int	ft_isspace3(int c)
 {
-	t_nm	*nm;
-
-	if (ac != 2)
+	if ((c >= 9 && c <= 13) || (c == ' '))
 		return (1);
-	nm = init(argv[1]);
-	if (nm->map_begin)
-		retrieve(nm);
-	ft_end(nm);
+	return (0);
 }

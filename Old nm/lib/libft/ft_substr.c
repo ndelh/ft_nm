@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/12 22:47:24 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/17 09:15:21 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include "libft.h"
 
-void	close_fd(t_nm *nm)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	size_t	i;
+	char	*sub;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (!s)
+		return (0);
+	i = ft_strlen(s);
+	if (start >= i)
+	{
+		sub = ft_calloc(1, 1);
+		if (!sub)
+			return (0);
+		return (sub);
+	}
+	i = i - start;
+	if (i > len)
+		i = len;
+	sub = ft_calloc(1, i + 1);
+	if (!sub)
+		return (0);
+	ft_memcpy(sub, s + start, i);
+	return (sub);
 }

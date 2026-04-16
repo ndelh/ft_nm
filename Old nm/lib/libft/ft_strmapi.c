@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/13 14:14:53 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/17 09:21:58 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include "libft.h"
 
-void	close_fd(t_nm *nm)
+char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	size_t	i;
+	char	*m;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (!s || !f)
+		return (0);
+	i = 0;
+	m = ft_calloc(1, ft_strlen(s) + 1);
+	if (!m)
+		return (0);
+	while (i < ft_strlen(s))
+	{
+		m[i] = f(i, s[i]);
+		i++;
+	}
+	return (m);
 }

@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 07:20:37 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/13 16:56:12 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "../ft_nm.h"
-
-void	close_fd(t_nm *nm)
+char	*ft_strchr(const char *str, int search)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	size_t	i;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	i = 0;
+	if ((unsigned char)search == 0)
+	{
+		i = ft_strlen(str);
+		return ((char *)str + i);
+	}
+	while (str[i])
+	{
+		if (str[i] == (unsigned char)search)
+		{
+			return ((char *)str + i);
+		}
+		else
+			i++;
+	}
+	return ((char *)0);
 }

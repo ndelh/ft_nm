@@ -32,7 +32,6 @@ void	memory_init(t_nm *nm)
 {
 	if (nm->fstat_result == -1)
 		return ;
-	nm->file_size = (uint64_t)nm->stat->st_size;
 	if (nm->file_size < 52)
 	{
 		print_simple_error("ELF binary file size cannot be less than 52 for Elf 32");

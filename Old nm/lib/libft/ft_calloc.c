@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/10 05:17:54 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/11 07:18:19 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include "libft.h"
 
-void	close_fd(t_nm *nm)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	void	*array;
+	size_t	a_size;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (nmemb >= 65535 || size >= 65535)
+		return (NULL);
+	a_size = (nmemb * size);
+	if (a_size <= 0)
+		array = malloc(1);
+	else
+		array = malloc(a_size);
+	if (!array)
+		return (0);
+	ft_bzero(array, a_size);
+	return (array);
 }

@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 08:11:28 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/11/13 07:38:06 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "../ft_nm.h"
-
-void	close_fd(t_nm *nm)
+int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	size_t	i;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (!*str1 && !*str2)
+		return (0);
+	i = 0;
+	while ((*str1 || *str2) && (i < n))
+	{
+		if (*str1 != *str2)
+			return ((unsigned char)*str1 - (unsigned char)*str2);
+		str1++;
+		str2++;
+		i++;
+	}
+	return (0);
 }

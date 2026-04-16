@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 13:53:47 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/11 06:05:00 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include "libft.h"
 
-void	close_fd(t_nm *nm)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	char	*cdest;
+	char	*csrc;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (!dest && !src)
+		return (0);
+	cdest = (char *)dest;
+	csrc = (char *)src;
+	if (cdest <= csrc)
+	{
+		while (n--)
+			*cdest++ = *csrc++;
+	}
+	if (cdest > csrc)
+	{
+		cdest += n - 1;
+		csrc += n - 1;
+		while (n--)
+			*cdest-- = *csrc--;
+	}
+	return (dest);
 }

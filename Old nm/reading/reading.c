@@ -64,8 +64,7 @@ void	read_map(t_nm *nm)
 	ft_parse_global_intel(nm);
 	fetch_data(nm);
 	security_parse(nm);
-	end = nm->map_end + 1;
-	s = (char *)nm->map_begin;
+	end = nm->map_end;
 	while (s != end)
 	{
 		write(1, s, 1);

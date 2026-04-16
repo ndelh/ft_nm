@@ -1,35 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   basic_test.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/11 14:09:36 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/11 14:22:56 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
-void	close_fd(t_nm *nm)
+int	g_z;
+
+void	alloc_call(char *s)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
+	char	*c;
+
+	c = malloc(strlen(s) + 1);
+	if (!c)
+		return ;
+	free(c);
+	c = strdup(s);
+	printf("%s\n", c);
+	free(c);
 }
 
-void	close_map(t_nm *nm)
+void	empty_func(void)
 {
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
 }
 
-
-void	ft_end(t_nm *nm)
+int	main(int ac, char **argv)
 {
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (ac != 2)
+		exit(1);
+	alloc_call(argv[1]);
 }

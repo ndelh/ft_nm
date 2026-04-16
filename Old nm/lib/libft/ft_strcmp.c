@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: agamay <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 17:11:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 11:38:04 by ndelhota         ###   ########.fr       */
+/*   Created: 2025/03/19 17:48:09 by agamay            #+#    #+#             */
+/*   Updated: 2025/03/19 17:52:30 by agamay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
-void	print_simple_error(char *s)
+int	ft_strcmp(const char *str1, const char *str2)
 {
-	ft_putendl_fd(s, 2);
-}
-
-void	print_error(char *s)
-{
-	char *a;
-
-	a = strerror(errno);
-	if (s)
+	if (!*str1 && !*str2)
+		return (0);
+	while ((*str1 || *str2))
 	{
-		ft_putendl_fd(s, 2);
-		ft_putchar_fd(32, 2);
+		if (*str1 != *str2)
+			return ((unsigned char)*str1 - (unsigned char)*str2);
+		str1++;
+		str2++;
 	}
-	ft_putendl_fd(a, 2);
+	return (0);
 }

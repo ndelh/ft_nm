@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/11 17:11:24 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/13 11:38:04 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_nm.h"
 
-void	close_fd(t_nm *nm)
+void	print_simple_error(char *s)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
+	ft_putendl_fd(s, 2);
 }
 
-void	close_map(t_nm *nm)
+void	print_error(char *s)
 {
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
+	char *a;
 
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	a = strerror(errno);
+	if (s)
+	{
+		ft_putendl_fd(s, 2);
+		ft_putchar_fd(32, 2);
+	}
+	ft_putendl_fd(a, 2);
 }

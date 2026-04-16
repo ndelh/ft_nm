@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end.c                                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 15:44:50 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 17:00:34 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/13 17:51:02 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include "ft_nm.h" 
 
-void	close_fd(t_nm *nm)
+int	main(int ac, char **argv)
 {
-	if (nm->fd != -1)
-		close(nm->fd);
-}
+	t_nm	*nm;
 
-void	close_map(t_nm *nm)
-{
-	if (nm->map_begin && nm->map_begin != MAP_FAILED)
-		munmap(nm->map_begin, (size_t)nm->file_size);
-}
-
-
-void	ft_end(t_nm *nm)
-{
-	close_fd(nm);
-	close_map(nm);
-	if (nm->stat)
-		free(nm->stat);
-	free(nm);
+	if (ac != 2)
+		return (1);
+	nm = init(argv[1]);
+	if (nm->map_begin)
+	{
+		read_map(nm);
+		symbols(nm);
+	}
+	ft_end(nm);
 }
