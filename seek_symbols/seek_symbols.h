@@ -15,4 +15,9 @@
 
 # include "../ft_nm.h"
 
-#endif 
+int	safety_section_header_loop(t_nm *nm);
+
+int	parse_sh_link(t_nm *nm, uint64_t index);
+
+
+#endif

@@ -15,6 +15,8 @@
 void	seek_symbols(t_nm *nm)
 {
 	(void)nm;
-	write(1, "test\n", 5);
+	safety_section_header_loop(nm);
 }
+
+
 
