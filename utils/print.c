@@ -12,6 +12,20 @@
 
 #include "utils.h"
 
+void	print_strtab(char *s, uint64_t size)
+{
+	printf("trying to print str_tab\n");
+	while (size)
+	{
+		if (!*s)
+			write(1, "\n", 1);
+		else
+			write(1, s, 1);
+		++s;
+		--size;
+	}
+}
+
 void	print_simple_error(char *s)
 {
 	ft_putendl_fd(s, 2);

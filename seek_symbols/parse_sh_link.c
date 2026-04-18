@@ -12,6 +12,15 @@
 
 #include "seek_symbols.h"
 
+//need to add non zero shentsize check
+
+int	is_string_valid(char *s, uint64_t size)
+{
+	if (s[size] != 0 || *s)
+		return (1);
+	return (0);
+}
+
 int	parse_sh_link_32(t_nm *nm, Elf32_Shdr *linked_header)
 {
 	if (linked_header->sh_type != SHT_STRTAB)

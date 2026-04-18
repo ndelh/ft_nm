@@ -23,6 +23,7 @@ SRC := main.c \
        retrieve/fetch.c \
        seek_symbols/seek_symbols.c \
        seek_symbols/safety_section_header_loop.c \
+       seek_symbols/retrieve_symtab_intel_64.c \
        seek_symbols/parse_sh_link.c \
        end/end.c
 

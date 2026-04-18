@@ -74,6 +74,6 @@ int	retrieve_shstr_content(t_nm *nm)
 		retrieve_string_table_32(nm, shstr);
 	if (parse_shstr_content(nm))
 		return (1);
-	print_name(nm);
+	//print_name(nm);
 	return (0);
 }

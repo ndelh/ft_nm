@@ -12,10 +12,16 @@
 
 #include "seek_symbols.h"
 
+void	retrieve_symtab_intel(t_nm *nm)
+{
+	if (nm->class == ELFCLASS64)
+		retrieve_symtab_intel_64(nm);
+}
+
 void	seek_symbols(t_nm *nm)
 {
-	(void)nm;
 	safety_section_header_loop(nm);
+	retrieve_symtab_intel(nm);
 }
 
 

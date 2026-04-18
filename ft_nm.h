@@ -63,6 +63,10 @@ int	add_range_overflow(uint64_t offset, uint64_t struct_size, uint64_t struct_nb
 int	is_section_out(t_nm *nm, uint64_t offset, uint64_t struct_size, uint64_t struct_nb, char *s);
 int	is_offset_out(t_nm *nm, uint64_t offset, char *s);
 
+/*debug*/
+
+void	print_strtab(char *s, uint64_t size);
+
 /* retrieve*/
 int	retrieve(t_nm *nm);
 /*	seek_symbols */

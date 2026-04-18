@@ -19,5 +19,6 @@ int	safety_section_header_loop(t_nm *nm);
 
 int	parse_sh_link(t_nm *nm, uint64_t index);
 
+int retrieve_symtab_intel_64(t_nm *nm);
 
 #endif
