@@ -17,6 +17,7 @@ SRC := main.c \
        utils/print.c \
        utils/overflow_check.c \
        utils/out_of_bound_check.c \
+       utils/display_result.c \
        retrieve/retrieve.c \
        retrieve/retrieve_16_bytes.c \
        retrieve/retrieve_shstr_content.c \
@@ -25,6 +26,8 @@ SRC := main.c \
        seek_symbols/safety_section_header_loop.c \
        seek_symbols/retrieve_symtab_intel_64.c \
        seek_symbols/parse_sh_link.c \
+       seek_symbols/seek_symbols_utils.c \
+       seek_symbols/list_add.c \
        end/end.c
 
 CC := cc

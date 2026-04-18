@@ -12,20 +12,43 @@
 
 #include "seek_symbols.h"
 
+char    assign_value_64(t_nm *nm, Elf64_Sym *current_sym)
+{
+    char        to_ret;
+    Elf64_Shdr  *target;
 
-void    print_sym_64(t_nm *nm, Elf64_Shdr *sym, char *s, uint64_t size)
+    to_ret = special_case(current_sym->st_shndx, current_sym->st_info);
+    if (!to_ret)
+    {
+        target = (Elf64_Shdr *)((char *)nm->map_begin + nm->section_header_offset +
+        (current_sym->st_shndx * nm->section_header_size));
+        to_ret = retrieve_current_flags(target->sh_flags, target->sh_type);
+    }
+    if (to_ret != 'U' && ELF64_ST_BIND(current_sym->st_info) == STB_LOCAL)
+        to_ret = ft_tolower(to_ret);
+    return (to_ret);
+}
+
+void    assign_sym_64(t_nm *nm, Elf64_Shdr *sym, char *strtab)
 {
     Elf64_Sym   *current_sym;
     uint64_t    it;
-    
-    (void)size;
+    char        c;
+    char        *s;
+    unsigned char   type;
+
     current_sym = (Elf64_Sym *)((char *)nm->map_begin + (sym->sh_offset));
-    //printf("program size: %ld required offset:  %u\n", nm->stat->st_size, sym->sh_link);
     it = sym->sh_size / sym->sh_entsize;
     while (it)
     {
-        printf("symbol adress: %zu symbol name: %s\n", current_sym->st_value, s + current_sym->st_name);
         --it;
+        type = ELF64_ST_TYPE(current_sym->st_info);
+        if (type != STT_FILE && type != STT_SECTION)
+        {
+            c = assign_value_64(nm, current_sym);
+            s = ft_strdup(strtab + current_sym->st_name);
+            list_add(nm, c, s, current_sym->st_value);
+        }
         current_sym = (Elf64_Sym *)((char *)current_sym + sym->sh_entsize);
     }
 }
@@ -41,7 +64,7 @@ void    fetch_symtab_data_64(t_nm *nm, Elf64_Shdr *cursor)
     str_tab = (char *)nm->map_begin + linked_strtab->sh_offset;
     str_size = linked_strtab->sh_size;
     //print_strtab(str_tab, str_size);
-    print_sym_64(nm, cursor, str_tab, str_size);
+    assign_sym_64(nm, cursor, str_tab);
 }
 
 int retrieve_symtab_intel_64(t_nm *nm)

@@ -24,12 +24,28 @@ void	close_map(t_nm *nm)
 		munmap(nm->map_begin, (size_t)nm->file_size);
 }
 
+void	free_list(t_symbol *list)
+{
+	t_symbol *tmp;
+
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp->name);
+		free(tmp);
+	}
+}
 
 void	ft_end(t_nm *nm)
 {
+	if (!nm)
+		return ;
 	close_fd(nm);
 	close_map(nm);
 	if (nm->stat)
 		free(nm->stat);
+	if (nm->print_list)
+		free_list(nm->print_list);
 	free(nm);
 }

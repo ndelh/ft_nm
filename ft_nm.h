@@ -24,6 +24,14 @@
 # include <sys/stat.h>
 # include "./lib/libft/libft.h"
 
+typedef	struct s_symbol
+{
+	uint64_t 		value;
+	char 			*name;
+	char			symbol;
+	struct s_symbol *next;
+} t_symbol;
+
 typedef struct s_nm
 {
 	int				fd;
@@ -48,6 +56,7 @@ typedef struct s_nm
 	struct stat		*stat;
 	void			*map_begin;
 	void			*map_end;
+	t_symbol		*print_list;
 }	t_nm;
 
 /* init block */
@@ -62,7 +71,7 @@ int mul_overflow(uint64_t a, uint64_t b, char *s);
 int	add_range_overflow(uint64_t offset, uint64_t struct_size, uint64_t struct_nb, char *s);
 int	is_section_out(t_nm *nm, uint64_t offset, uint64_t struct_size, uint64_t struct_nb, char *s);
 int	is_offset_out(t_nm *nm, uint64_t offset, char *s);
-
+void	display_result(t_nm *nm);
 /*debug*/
 
 void	print_strtab(char *s, uint64_t size);

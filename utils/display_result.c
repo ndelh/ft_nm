@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   seek_symbols.h                                     :+:      :+:    :+:   */
+/*   display_result.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/16 19:32:16 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/16 19:33:25 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/18 19:56:28 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/18 20:00:46 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SEEK_SYMBOLS_H
-# define SEEK_SYMBOLS_H
+#include "utils.h"
 
-# include "../ft_nm.h"
+void	print_list(t_symbol *symbol)
+{
+	while (symbol)
+	{
+		printf("%zu ", symbol->value);
+		printf("%c ", symbol->symbol);
+		printf("%s\n", symbol->name);
+		symbol = symbol->next;
+	}
+}
 
-int	safety_section_header_loop(t_nm *nm);
-
-int	parse_sh_link(t_nm *nm, uint64_t index);
-
-int retrieve_symtab_intel_64(t_nm *nm);
-
-//utils for symbols
-char	special_case(uint16_t c, unsigned char st_info);
-char	retrieve_current_flags(uint64_t flags, uint32_t type);
-void	list_add(t_nm *nm, char c, char *s, uint64_t value);
-
-#endif
+void	display_result(t_nm *nm)
+{
+	if (nm->print_list)
+		print_list(nm->print_list);
+}

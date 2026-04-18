@@ -22,5 +22,6 @@ int	main(int ac, char **argv)
 	if (nm->map_begin)
 		if (!retrieve(nm) && nm->section_header_nb)
 			seek_symbols(nm);
+	display_result(nm);
 	ft_end(nm);
 }
