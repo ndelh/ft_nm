@@ -6,15 +6,20 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 15:16:40 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 13:05:49 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/19 14:33:35 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_nm.h"
+#include "init.h"
 
 void	open_file(t_nm *nm, char *s)
 {
 	nm->fd = open(s, O_RDONLY);
+	if (nm->fd == -1)
+	{
+		perror(s);
+		return ;
+	}
 }
 
 void	fetch_stat(t_nm *nm)
@@ -44,7 +49,7 @@ void	memory_init(t_nm *nm)
 	nm->map_end = nm->map_begin + nm->file_size;
 }
 
-t_nm	*init(char *s)
+t_nm	*init(char **argv)
 {
 	t_nm	*to_ret;
 
@@ -52,8 +57,6 @@ t_nm	*init(char *s)
 	if (!to_ret)
 		return (to_ret);
 	ft_memset(to_ret, 0, sizeof(struct s_nm));
-	open_file(to_ret, s);
-	fetch_stat(to_ret);
-	memory_init(to_ret);
+	retrieve_flag_and_files(to_ret, argv);
 	return (to_ret);
 }

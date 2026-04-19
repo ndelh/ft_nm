@@ -24,6 +24,12 @@
 # include <sys/stat.h>
 # include "./lib/libft/libft.h"
 
+# define FLAG_a (1 << 0)
+# define FLAG_g (1 << 1)
+# define FLAG_u (1 << 2)
+# define FLAG_r (1 << 3)
+# define FLAG_p (1 << 4)
+
 typedef	struct s_symbol
 {
 	uint64_t 		value;
@@ -53,14 +59,23 @@ typedef struct s_nm
 	uint64_t		string_tab_size;
 	char			*string_tab;
 	char			*header_name;
+	unsigned char	flags;
 	struct stat		*stat;
 	void			*map_begin;
 	void			*map_end;
+	char			**files_to_nm;
+	int				file_nb;
 	t_symbol		*print_list;
 }	t_nm;
 
 /* init block */
-t_nm	*init(char *s);
+t_nm	*init(char **argv);
+void    retrieve_flag_and_files(t_nm *nm, char **argv);
+
+/* initiation before each nm exec*/
+void	fetch_stat(t_nm *nm);
+void	open_file(t_nm *nm, char *s);
+void	memory_init(t_nm *nm);
 
 
 /* utils */
@@ -83,5 +98,9 @@ void	seek_symbols(t_nm *nm);
 
 /* end_block */
 void	ft_end(t_nm *nm);
+void	close_map(t_nm *nm);
+void	free_list(t_symbol *list);
+void	close_map(t_nm *nm);
+void	close_fd(t_nm *nm);
 
 #endif

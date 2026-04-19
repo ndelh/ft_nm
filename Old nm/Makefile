@@ -14,6 +14,7 @@ NAME := ft_nm
 
 SRC := main.c \
        init/init.c \
+       init/retrieve_flags_and_files.c \
        utils/print.c \
        reading/reading.c \
        reading/parse.c \

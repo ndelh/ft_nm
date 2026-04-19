@@ -14,6 +14,8 @@ NAME := ft_nm
 
 SRC := main.c \
        init/init.c \
+       init/init_utils.c \
+       init/retrieve_flags_and_files.c \
        utils/print.c \
        utils/overflow_check.c \
        utils/out_of_bound_check.c \

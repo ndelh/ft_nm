@@ -72,6 +72,8 @@ void	print_list(t_symbol *symbol, t_nm *nm)
 
 void	display_result(t_nm *nm)
 {
+	if (!nm)
+		return ;
 	if (nm->print_list)
 		print_list(nm->print_list, nm);
 }

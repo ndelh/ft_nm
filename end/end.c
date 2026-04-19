@@ -47,5 +47,7 @@ void	ft_end(t_nm *nm)
 		free(nm->stat);
 	if (nm->print_list)
 		free_list(nm->print_list);
+	if (nm->files_to_nm)
+		free(nm->files_to_nm);
 	free(nm);
 }

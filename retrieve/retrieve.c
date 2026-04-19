@@ -39,6 +39,8 @@ int	check_data(t_nm *nm)
 
 int	retrieve(t_nm *nm)
 {
+	if (!nm->map_begin)
+		return (1);
 	if (retrieve_16_bytes(nm))
 		return (1);
 	if (fetch(nm))
