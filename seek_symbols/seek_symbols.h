@@ -26,4 +26,7 @@ char	special_case(uint16_t c, unsigned char st_info);
 char	retrieve_current_flags(uint64_t flags, uint32_t type);
 void	list_add(t_nm *nm, char c, char *s, uint64_t value);
 
+//utils for cmp
+int		no_maj_cmp(char *s1, char *s2);
+
 #endif

@@ -12,9 +12,27 @@
 
 #include "seek_symbols.h"
 
+int		no_maj_cmp(char *s1, char *s2)
+{
+		char	a;
+		char	b;
+
+		a = 0;
+		b = 0;
+		while (*s1)
+		{
+			a = *s1++;
+			b = *s2++;
+			a = ft_tolower(a);
+			b = ft_tolower(b);
+			if (a != b)
+				break ;
+		}
+		return (a - b);
+}
+
 /* Weak symbols can pop as w or v. v means variable. Uppercase means that
 symbols is defined */
-
 char	weak_case(uint16_t c, unsigned char st_info)
 {
 	if (ELF64_ST_TYPE(st_info) == STT_OBJECT)
