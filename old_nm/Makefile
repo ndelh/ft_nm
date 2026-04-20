@@ -6,24 +6,36 @@
 #    By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 17:08:53 by ndelhota          #+#    #+#              #
-#    Updated: 2026/04/20 19:15:15 by ndelhota         ###   ########.fr        #
+#    Updated: 2026/04/20 14:30:55 by ndelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME := ft_nm 
 
 SRC := main.c \
-       retrieve_args/retrieve_args.c \
-       retrieve_args/retrieve_flags.c \
-       nm_core/nm_core.c \
-       nm_core/nm_print/nm_print.c \
-       nm_core/nm_init/nm_init.c \
-       nm_core/end_nm/end_nm.c \
-       end/end.c \
+       init/init.c \
+       init/init_utils.c \
+       init/retrieve_flags_and_files.c \
+       utils/print.c \
+       utils/overflow_check.c \
+       utils/out_of_bound_check.c \
+       utils/display_result.c \
+       retrieve/retrieve.c \
+       retrieve/retrieve_16_bytes.c \
+       retrieve/retrieve_shstr_content.c \
+       retrieve/fetch.c \
+       seek_symbols/seek_symbols.c \
+       seek_symbols/safety_section_header_loop.c \
+       seek_symbols/retrieve_symtab_intel_64.c \
+       seek_symbols/retrieve_symtab_intel_64_utils.c \
+       seek_symbols/parse_sh_link.c \
+       seek_symbols/seek_symbols_utils.c \
+       seek_symbols/list_add.c \
+       end/end.c
 
 CC := cc
 
-CFLAGS := -g -Wall -Werror -Wextra
+CFLAGS := -Wall -Werror -Wextra
 
 OBJDIR = obj
 OBJ = $(SRC:.c=.o)

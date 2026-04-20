@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   nm_core.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 17:51:02 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/20 19:43:47 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/20 19:45:10 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#ifndef NM_CORE_H
+# define NM_CORE_H
 
-int	alloc_data(t_data **data)
-{
-	*data = malloc(sizeof(t_data));
-	if (!data)
-	{
-		perror("failed to allocate main_struct");
-		return (1);
-	}
-	ft_memset(*data, 0, sizeof(t_data));
-	return (0);
-}
+# include "../ft_nm.h"
 
-int	main(int ac, char **argv)
-{
-	t_data	*data;
-	
-	data = NULL;
-	if (alloc_data(&data))
-		return (1);
-	retrieve_args(data, ac, argv);
-	nm_loop(data);
-	ft_end(data);
-}
+//init
+void	init_nm(t_data *data);
+
+//end
+
+void	end_nm(t_data *data, t_current_nm *current_nm);
+
+//error
+void	nm_error(t_data *data, char *s);
+
+
+#endif

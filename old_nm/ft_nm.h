@@ -22,7 +22,6 @@
 # include <errno.h>
 # include <sys/types.h>
 # include <sys/stat.h>
-# include <stdbool.h>
 # include "./lib/libft/libft.h"
 
 # define FLAG_a (1 << 0)
@@ -38,43 +37,6 @@ typedef	struct s_symbol
 	char			symbol;
 	struct s_symbol *next;
 } t_symbol;
-
-typedef struct s_current_nm
-{
-	int	fd;
-	//file intels
-	int class;
-	int version;
-	int	endian;
-	int	osabi;
-	uint64_t		elf_header_size;
-	uint64_t		section_header_nb;
-	uint64_t		section_header_size;
-	//shstr intels
-	uint64_t		section_header_string_table_index;
-	uint64_t		shstr_content_offset;
-	uint64_t		shstr_content_size;
-	uint64_t		string_tab_size;
-	char			*header_name;
-	//map intels
-	struct stat		*stat;
-	void			*map_begin;
-	uint64_t		file_size;
-	struct t_symbol	*print_list;
-
-
-} t_current_nm;
-typedef struct s_data
-{
-	unsigned char			flags;
-	int						file_nb;
-	char					**file_to_nm;
-	char					*current_file;
-	struct s_current_nm		*current_nm;
-	bool					dead_nm;
-	
-}	t_data;
-
 
 typedef struct s_nm
 {
@@ -106,13 +68,39 @@ typedef struct s_nm
 	t_symbol		*print_list;
 }	t_nm;
 
-//args retrieving and flags settings
-int	retrieve_args(t_data *data, int ac, char **argv);
+/* init block */
+t_nm	*init(char **argv);
+void    retrieve_flag_and_files(t_nm *nm, char **argv);
 
-//nm_core
-void	nm_loop(t_data *data);
+/* initiation before each nm exec*/
+void	fetch_stat(t_nm *nm);
+void	open_file(t_nm *nm, char *s);
+void	memory_init(t_nm *nm);
 
-//end
-void	ft_end(t_data *data);
+
+/* utils */
+void	print_error(char *s);
+void	print_simple_error(char *s);
+int add_overflow(uint64_t a, uint64_t b, char *s);
+int mul_overflow(uint64_t a, uint64_t b, char *s);
+int	add_range_overflow(uint64_t offset, uint64_t struct_size, uint64_t struct_nb, char *s);
+int	is_section_out(t_nm *nm, uint64_t offset, uint64_t struct_size, uint64_t struct_nb, char *s);
+int	is_offset_out(t_nm *nm, uint64_t offset, char *s);
+void	display_result(t_nm *nm);
+/*debug*/
+
+void	print_strtab(char *s, uint64_t size);
+
+/* retrieve*/
+int	retrieve(t_nm *nm);
+/*	seek_symbols */
+void	seek_symbols(t_nm *nm);
+
+/* end_block */
+void	ft_end(t_nm *nm);
+void	close_map(t_nm *nm);
+void	free_list(t_symbol *list);
+void	close_map(t_nm *nm);
+void	close_fd(t_nm *nm);
 
 #endif

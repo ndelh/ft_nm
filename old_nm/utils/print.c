@@ -1,37 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 17:51:02 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/11 17:11:24 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/13 11:38:04 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#include "utils.h"
 
-int	alloc_data(t_data **data)
+void	print_strtab(char *s, uint64_t size)
 {
-	*data = malloc(sizeof(t_data));
-	if (!data)
+	while (size)
 	{
-		perror("failed to allocate main_struct");
-		return (1);
+		if (!*s)
+			write(1, "\n", 1);
+		else
+			write(1, s, 1);
+		++s;
+		--size;
 	}
-	ft_memset(*data, 0, sizeof(t_data));
-	return (0);
 }
 
-int	main(int ac, char **argv)
+void	print_simple_error(char *s)
 {
-	t_data	*data;
-	
-	data = NULL;
-	if (alloc_data(&data))
-		return (1);
-	retrieve_args(data, ac, argv);
-	nm_loop(data);
-	ft_end(data);
+	ft_putendl_fd(s, 2);
+}
+
+void	print_error(char *s)
+{
+	char *a;
+
+	a = strerror(errno);
+	if (s)
+	{
+		ft_putendl_fd(s, 2);
+		ft_putchar_fd(32, 2);
+	}
+	ft_putendl_fd(a, 2);
 }

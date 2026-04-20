@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   nm_core.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 17:51:02 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#include "nm_core.h"
 
-int	alloc_data(t_data **data)
+void	nm_loop(t_data *data)
 {
-	*data = malloc(sizeof(t_data));
-	if (!data)
+	char **file;
+
+	file = data->file_to_nm;
+	while (*file)
 	{
-		perror("failed to allocate main_struct");
-		return (1);
+		data->current_file = *file;
+		init_nm(data);
+		// fetch_nm(data);
+		end_nm(data, data->current_nm);
+		++file;
 	}
-	ft_memset(*data, 0, sizeof(t_data));
-	return (0);
-}
-
-int	main(int ac, char **argv)
-{
-	t_data	*data;
-	
-	data = NULL;
-	if (alloc_data(&data))
-		return (1);
-	retrieve_args(data, ac, argv);
-	nm_loop(data);
-	ft_end(data);
 }
