@@ -28,7 +28,7 @@ void	mapping_file(t_data *data, t_current_nm *nm)
 {
 		if (data->dead_nm)
 			return ;
-		if (nm->file_size < 8)
+		if (nm->file_size < 16)
 			return (nm_error(data, "file shorter than an unsigned char"));
 		nm->map_begin = mmap(NULL, nm->file_size, PROT_READ, MAP_PRIVATE, nm->fd, 0);
 		if (nm->map_begin == MAP_FAILED)
@@ -59,4 +59,5 @@ void	init_nm(t_data *data)
 	open_nm(data, data->current_nm);
 	fetch_stat(data, data->current_nm);
 	mapping_file(data, data->current_nm);
+	retrieve_basic(data, data->current_nm);
 }

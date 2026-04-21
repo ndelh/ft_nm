@@ -47,11 +47,11 @@ typedef struct s_current_nm
 	int version;
 	int	endian;
 	int	osabi;
-	uint64_t		elf_header_size;
+	uint64_t		section_header_offset;
 	uint64_t		section_header_nb;
 	uint64_t		section_header_size;
 	//shstr intels
-	uint64_t		section_header_string_table_index;
+	uint64_t		shstr_index;
 	uint64_t		shstr_content_offset;
 	uint64_t		shstr_content_size;
 	uint64_t		string_tab_size;
@@ -64,6 +64,7 @@ typedef struct s_current_nm
 
 
 } t_current_nm;
+
 typedef struct s_data
 {
 	unsigned char			flags;

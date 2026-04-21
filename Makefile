@@ -16,8 +16,12 @@ SRC := main.c \
        retrieve_args/retrieve_args.c \
        retrieve_args/retrieve_flags.c \
        nm_core/nm_core.c \
+	   nm_core/nm_utils/overflow_checker.c \
+	   nm_core/nm_utils/range_checker.c \
        nm_core/nm_print/nm_print.c \
        nm_core/nm_init/nm_init.c \
+	   nm_core/nm_init/retrieve_basics.c \
+	   nm_core/nm_init/retrieve_basic_utils.c \
        nm_core/end_nm/end_nm.c \
        end/end.c \
 

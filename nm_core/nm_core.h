@@ -25,5 +25,8 @@ void	end_nm(t_data *data, t_current_nm *current_nm);
 //error
 void	nm_error(t_data *data, char *s);
 
+//header intels check
+void    add_overflow(uint64_t a, u_int64_t b, char *s, t_data *data);
+void    mul_overflow(uint64_t a, u_int64_t b, char *s, t_data *data);
 
 #endif

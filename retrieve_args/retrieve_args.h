@@ -16,6 +16,6 @@
 # include "../ft_nm.h"
 
 int     retrieve_flags(t_data *data, char **argv);
-int	no_file_case(t_data *data);
+int     no_file_case(t_data *data);
 
 #endif

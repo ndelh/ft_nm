@@ -14,8 +14,9 @@
 
 void	nm_error(t_data *data, char *s)
 {
+	ft_putstr_fd("nm : '", 2);
 	ft_putstr_fd(data->current_file, 2);
-	ft_putstr_fd(": ", 2);
+	ft_putstr_fd("': ", 2);
 	if (s)
 		ft_putendl_fd(s, 2);
 	else
