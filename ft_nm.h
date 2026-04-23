@@ -34,8 +34,12 @@
 typedef	struct s_symbol
 {
 	uint64_t 		value;
+	uint64_t		name_index;
+	uint16_t		section_index;
 	char 			*name;
 	char			symbol;
+	unsigned char	type_info;
+	uint64_t		sym_size;
 	struct s_symbol *next;
 } t_symbol;
 
@@ -60,13 +64,16 @@ typedef struct s_current_nm
 	uint64_t		symtab_content_offset;
 	uint64_t		symtab_content_size;
 	uint64_t		sym_name_index;
+	uint64_t		str_sym_name_offset;
+	uint64_t		str_sym_name_size;
+	uint64_t		symstruct_size;
 	char			*sym_name;
-	uint64_t		sym_name_size;
 	//map intels
 	struct stat		*stat;
 	void			*map_begin;
 	uint64_t		file_size;
 	struct t_symbol	*print_list;
+	struct t_symbol	*current;
 
 
 } t_current_nm;

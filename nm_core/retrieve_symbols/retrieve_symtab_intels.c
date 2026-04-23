@@ -16,6 +16,7 @@ void    fetch_symtab_intels_32(t_current_nm *nm, Elf32_Shdr *cursor)
 {
     nm->symtab_content_offset = cursor->sh_offset;
     nm->symtab_content_size = cursor->sh_size;
+    nm->symstruct_size = cursor->sh_entsize;
     nm->sym_name_index = cursor->sh_link;
 }
 
@@ -23,6 +24,7 @@ void    fetch_symtab_intels_64(t_current_nm *nm, Elf64_Shdr *cursor)
 {
     nm->symtab_content_offset = cursor->sh_offset;
     nm->symtab_content_size = cursor->sh_size;
+    nm->symstruct_size = cursor->sh_entsize;
     nm->sym_name_index = cursor->sh_link;
 }
 
@@ -42,4 +44,5 @@ void	retrieve_symtab_intels(t_data *data, t_current_nm *nm, void *cursor)
 	else
 		fetch_symtab_intels_64(nm, (Elf64_Shdr *)cursor);
 	parse_symtab_intels(data, nm);
+    retrieve_symbols_name(data, nm);
 }

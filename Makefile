@@ -25,6 +25,9 @@ SRC := main.c \
 	   nm_core/nm_init/retrieve_shstr.c \
 	   nm_core/retrieve_symbols/retrieve_symbols.c \
 	   nm_core/retrieve_symbols/retrieve_symtab_intels.c \
+	   nm_core/retrieve_symbols/retrieve_symbols_name.c \
+	   nm_core/retrieve_symbols/retrieve_sym_loop_64.c \
+	   nm_core/retrieve_symbols/retrieve_sym_loop_utils.c \
        nm_core/end_nm/end_nm.c \
        end/end.c \
 

@@ -23,11 +23,13 @@ void	retrieve_symbols(t_data *data, t_current_nm *nm)
 	if (((Elf64_Shdr *)cursor)->sh_type != SHT_NULL)
 		return (nm_error(data, "invalid first section header type"));
 	iteration = nm->section_header_nb;
-	while (iteration)
+	while (iteration && !data->dead_nm)
 	{
 		if (((Elf64_Shdr *)cursor)->sh_type == SHT_SYMTAB)
 		{
 			retrieve_symtab_intels(data, nm, cursor);
+			if (nm->class == ELFCLASS64)
+				retrieve_sym_loop_64(data, nm);
 		}
 		cursor += nm->section_header_size;
 		--iteration;
