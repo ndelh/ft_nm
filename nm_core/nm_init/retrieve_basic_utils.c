@@ -22,14 +22,6 @@ void	parse_first_char_intel(t_data *data, t_current_nm *nm)
 		return (nm_error(data, "invalid version or executable is from future"));
 }
 
-void	offset_calculus(t_data *data, t_current_nm *nm)
-{
-	if (data->dead_nm)
-		return ;
-	(void)nm;
-}
-
-
 void	shdr_size_and_index(t_data *data, t_current_nm *nm)
 {
 	if (!nm->section_header_offset && nm->section_header_nb)
@@ -46,8 +38,15 @@ void	shdr_size_and_index(t_data *data, t_current_nm *nm)
 
 void	parse_shdr_intels(t_data *data, t_current_nm *nm)
 {
+	void	*type;
+
 	if (data->dead_nm)
 		return ;
 	shdr_size_and_index(data, nm);
-	offset_calculus(data, nm);
+	if (range_check(data, nm->section_header_offset, nm->section_header_size,
+		nm->section_header_nb, "corrupted shdr range"))
+			return ;
+	type = nm->map_begin + nm->section_header_offset;
+	if (((Elf64_Shdr *)type)->sh_type != SHT_NULL)
+		return (nm_error(data, "first shdr not null"));
 }

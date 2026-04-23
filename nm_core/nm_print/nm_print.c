@@ -23,3 +23,16 @@ void	nm_error(t_data *data, char *s)
 		perror(NULL);
 	data->dead_nm = 1;
 }
+
+void	print_table_name(char *s, uint64_t size)
+{
+	while (size)
+	{
+		if (!*s)
+			write(1, "\n", 1);
+		else
+			write(1, s, 1);
+		++s;
+		--size;
+	}
+}

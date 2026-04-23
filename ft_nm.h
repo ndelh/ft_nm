@@ -56,6 +56,12 @@ typedef struct s_current_nm
 	uint64_t		shstr_content_size;
 	uint64_t		string_tab_size;
 	char			*header_name;
+	//symtab intel
+	uint64_t		symtab_content_offset;
+	uint64_t		symtab_content_size;
+	uint64_t		sym_name_index;
+	char			*sym_name;
+	uint64_t		sym_name_size;
 	//map intels
 	struct stat		*stat;
 	void			*map_begin;
@@ -76,37 +82,6 @@ typedef struct s_data
 	
 }	t_data;
 
-
-typedef struct s_nm
-{
-	int				fd;
-	int				fstat_result;
-	int				page_size;
-	int				class;
-	int				version;
-	int				endian;
-	int				osabi;
-	int				must_exit;
-	uint64_t		file_size;
-	uint64_t		elf_header_size;
-	uint64_t		section_header_offset;
-	uint64_t		section_header_nb;
-	uint64_t		section_header_size;
-	uint64_t		section_header_string_table_index;
-	uint64_t		shstr_content_offset;
-	uint64_t		shstr_content_size;
-	uint64_t		string_tab_size;
-	char			*string_tab;
-	char			*header_name;
-	unsigned char	flags;
-	struct stat		*stat;
-	void			*map_begin;
-	void			*map_end;
-	char			**files_to_nm;
-	int				file_nb;
-	t_symbol		*print_list;
-}	t_nm;
-
 //args retrieving and flags settings
 int	retrieve_args(t_data *data, int ac, char **argv);
 
@@ -115,5 +90,8 @@ void	nm_loop(t_data *data);
 
 //end
 void	ft_end(t_data *data);
+
+//print
+void	print_table_name(char *s, uint64_t size);
 
 #endif

@@ -28,5 +28,12 @@ void	nm_error(t_data *data, char *s);
 //header intels check
 void    add_overflow(uint64_t a, u_int64_t b, char *s, t_data *data);
 void    mul_overflow(uint64_t a, u_int64_t b, char *s, t_data *data);
+int	    range_check(t_data *data, uint64_t offset, uint64_t struct_size,
+		uint64_t struct_nb, char *s);
+
+//retrieve sym_tab and content
+void	retrieve_symbols(t_data *data, t_current_nm *nm);
+
+
 
 #endif

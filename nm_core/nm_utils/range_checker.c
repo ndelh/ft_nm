@@ -27,6 +27,8 @@ int	range_check(t_data *data, uint64_t offset, uint64_t struct_size,
 {
 	uint64_t	total_size;
 
+	if (data->dead_nm)
+		return (0);
 	mul_overflow(struct_size, struct_nb, s, data);
 	if (data->dead_nm)
 		return (1);

@@ -16,6 +16,7 @@
 #include "../nm_core.h"
 
 void	retrieve_basic(t_data *data, t_current_nm *nm);
+void	fetch_shstr_intels(t_data *data, t_current_nm *nm);
 
 //parsing
 void	parse_first_char_intel(t_data *data, t_current_nm *nm);

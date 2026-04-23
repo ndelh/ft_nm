@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   retrieve_symbols.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/23 11:55:39 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/23 11:56:27 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#ifndef RETRIEVE_SYMBOLS_H
+# define RETRIEVE_SYMBOLS_H
 
-void	nm_loop(t_data *data)
-{
-	char **file;
+# include "../nm_core.h"
 
-	file = data->file_to_nm;
-	while (*file)
-	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
-	}
-}
+//retrieve_symtab intels
+void	retrieve_symtab_intels(t_data *data, t_current_nm *nm, void *cursor);
+
+//symtab type header intels
+
+void    parse_symtab_intels(t_data *data, t_current_nm *nm);
+
+#endif

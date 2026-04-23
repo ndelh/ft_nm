@@ -70,4 +70,5 @@ void	retrieve_basic(t_data *data, t_current_nm *nm)
 		return ;
 	fetch_first_char_intels(data, nm);
 	fetch_header_intels(data, nm);
+	fetch_shstr_intels(data, nm);
 }
