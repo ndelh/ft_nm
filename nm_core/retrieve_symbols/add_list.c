@@ -17,7 +17,6 @@ int64_t	tie_breaker(t_symbol *a, t_symbol *b)
 		int64_t	to_ret;
 	
 		to_ret = nm_comp(a->name, b->name);
-		printf(" comp result: %li\n", to_ret);
 		if (!to_ret)
 			to_ret = a->value - b->value;
 		return (to_ret);
@@ -57,6 +56,7 @@ int		insert_first(t_current_nm *nm, t_symbol *current)
 		if (comp > 0)
 		{
 			current->next = nm->print_list;
+			nm->print_list->previous = current;
 			nm->print_list = current;
 			return (1);
 		}
@@ -80,7 +80,21 @@ void	insert_list(t_current_nm *nm, t_symbol *current)
 		list = list->next;
 	}
 	current->next = list->next;
+	if (current->next)
+		current->next->previous = current;
+	current->previous = list;
 	list->next = current;
+}
+
+void	add_back(t_current_nm *nm)
+{
+	t_symbol	*list;
+	
+	list = nm->print_list;
+	while (list->next)
+		list = list->next;
+	list->next = nm->current;
+	nm->current->previous = list; 	
 }
 
 void	add_list(t_data *data, t_current_nm *nm)
@@ -89,6 +103,8 @@ void	add_list(t_data *data, t_current_nm *nm)
 	assign_name(data, nm, nm->current);
 	if (!nm->print_list)
 		nm->print_list = nm->current;
+	else if (data->flags & FLAG_p)
+		add_back(nm);
 	else
 		insert_list(nm, nm->current);
 	nm->current = NULL;

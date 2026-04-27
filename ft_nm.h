@@ -43,6 +43,7 @@ typedef	struct s_symbol
 	unsigned char	type_info;
 	uint64_t		sym_size;
 	struct s_symbol *next;
+	struct s_symbol	*previous;
 } t_symbol;
 
 typedef struct s_current_nm

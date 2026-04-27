@@ -15,4 +15,7 @@
 
 # include "../nm_core.h"
 
+void	print_in_reverse(t_data *data, t_symbol *symbol, t_current_nm *nm);
+void	display_data(t_data *data, t_symbol *symbol, t_current_nm *nm, char *base);
+
 #endif

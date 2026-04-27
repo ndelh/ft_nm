@@ -18,7 +18,7 @@ void	retrieve_print_intels_64(t_data *data, t_current_nm *nm, Elf64_Sym *cursor)
 	
 	current_sym = alloc_node(data);
 	if (!current_sym)
-		return;
+		return (nm_error(data, "failed to allocate symbol node"));
 	nm->current = current_sym;
 	current_sym->name_index = cursor->st_name;
 	current_sym->value = cursor->st_value;

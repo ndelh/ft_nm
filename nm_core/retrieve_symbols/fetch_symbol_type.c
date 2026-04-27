@@ -14,7 +14,7 @@
 
 unsigned char	weak_case(uint16_t section_index, unsigned char info)
 {
-	if (ELF64_ST_TYPE(info) == STT_OBJECT)\
+	if (ELF64_ST_TYPE(info) == STT_OBJECT)
 	{
 		if (section_index == SHN_UNDEF)
 			return ('v');

@@ -58,6 +58,8 @@ void	display_data(t_data *data, t_symbol *symbol, t_current_nm *nm, char *base)
 {
 		if (data->flags & FLAG_u && symbol->section_index != SHN_UNDEF)
 			return ;
+		if (data->flags & FLAG_g && ELF64_ST_BIND(symbol->type_info) == STB_LOCAL)
+			return ;
 		print_value(data, symbol, nm, base);
 		write(1, " ", 1);
 		ft_putchar_fd(symbol->symbol, 1);
@@ -70,9 +72,11 @@ void	print_list(t_data *data, t_symbol *symbol, t_current_nm *nm)
 {
 	char *base;
 
+	if (!symbol)
+		return ;
 	base = ft_strdup("0123456789abcdef");
 	if (!base)
-		return ;
+		return (nm_error(data, "failed alloc for hex base"));
 	while (symbol)
 	{
 		if ((symbol->type_info != STT_FILE && symbol->type_info != STT_SECTION) || (data->flags & FLAG_a))
@@ -89,5 +93,16 @@ void	print_result(t_data *data, t_current_nm *nm)
 	if (data->dead_nm)
 		return ;
 	list = nm->print_list;
-	print_list(data, list, nm);
+	if (!list || data->file_nb > 1)
+	{
+		ft_putstr_fd("nm : '", 1);
+		ft_putstr_fd(data->current_file, 1);
+		ft_putstr_fd("': ", 1);
+	}
+	if (!list)
+		ft_putendl_fd("no symbols", 1);
+	if (data->flags & FLAG_r)
+		print_in_reverse(data, list, nm);
+	else
+		print_list(data, list, nm);
 }
