@@ -1,32 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   nm_cmp.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 17:11:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/13 11:38:04 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/27 17:56:13 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/27 18:02:12 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "nm_utils.h"
 
-void	print_strtab(char *s, uint64_t size)
+int	nm_comp(char *s1, char *s2)
 {
-	while (size)
+	unsigned char	a;
+	unsigned char	b;
+
+	a = 0;
+	b = 0;
+	while (*s1 || *s2)
 	{
-		if (!*s)
-			write(1, "\n", 1);
-		else
-			write(1, s, 1);
-		++s;
-		--size;
+		if (*s1 != *s2)
+			break ;
+		++s1;
+		++s2;
 	}
+	a = *s1;
+	b = *s2;
+	if (*s1 == '@')
+		a = 255;
+	if (*s2 == '@')
+		b = 255;
+	return (a - b);	
 }
-
-void	print_simple_error(char *s)
-{
-	ft_putendl_fd(s, 2);
-}
-

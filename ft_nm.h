@@ -36,7 +36,9 @@ typedef	struct s_symbol
 	uint64_t 		value;
 	uint64_t		name_index;
 	uint16_t		section_index;
-	char 			*name;
+	uint64_t 		flags;
+	uint32_t 		type;
+	char			*name;
 	char			symbol;
 	unsigned char	type_info;
 	uint64_t		sym_size;
@@ -72,10 +74,8 @@ typedef struct s_current_nm
 	struct stat		*stat;
 	void			*map_begin;
 	uint64_t		file_size;
-	struct t_symbol	*print_list;
-	struct t_symbol	*current;
-
-
+	t_symbol		*print_list;
+	t_symbol		*current;
 } t_current_nm;
 
 typedef struct s_data
@@ -97,8 +97,5 @@ void	nm_loop(t_data *data);
 
 //end
 void	ft_end(t_data *data);
-
-//print
-void	print_table_name(char *s, uint64_t size);
 
 #endif

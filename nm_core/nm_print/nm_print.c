@@ -24,8 +24,9 @@ void	nm_error(t_data *data, char *s)
 	data->dead_nm = 1;
 }
 
-void	print_table_name(char *s, uint64_t size)
+void	print_table_name(char *s, uint64_t size, char *msg)
 {
+	ft_putendl_fd(msg, 1);
 	while (size)
 	{
 		if (!*s)

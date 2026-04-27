@@ -16,9 +16,10 @@ void	retrieve_print_intels_64(t_data *data, t_current_nm *nm, Elf64_Sym *cursor)
 {
 	t_symbol *current_sym;
 	
-	if (alloc_print_node)
-		return ;
-	current_sym = nm->current;
+	current_sym = alloc_node(data);
+	if (!current_sym)
+		return;
+	nm->current = current_sym;
 	current_sym->name_index = cursor->st_name;
 	current_sym->value = cursor->st_value;
 	current_sym->type_info = cursor->st_info;
@@ -43,7 +44,7 @@ void	retrieve_sym_loop_64(t_data *data, t_current_nm *nm)
 	while (iteration && !data->dead_nm)
 	{
 		retrieve_print_intels_64(data, nm, (Elf64_Sym *)cursor);
-		parse_print_intel(data, nm);
+		parse_print_intels(data, nm, nm->current);
 		add_list(data, nm);
 		--iteration;
 		cursor += nm->symstruct_size;

@@ -12,15 +12,18 @@
 
 #include "retrieve_symbols.h"
 
-int	alloc_print_node(t_data *data, t_current_nm *nm)
+t_symbol	*alloc_node(t_data *data)
 {
-	nm->current = malloc(sizeof(t_symbol));
-	if (!nm->current)
+	t_symbol	*to_ret;
+	
+	to_ret = malloc(sizeof(t_symbol));
+	if (!to_ret)
 	{
-		nm_error(data, "malloc failed when forging symbol list");
-		return (1);
+		nm_error(data, "failed malloc while creating symbol list");
+		return (NULL);
 	}
-	return (0);
+	ft_memset(to_ret, 0, sizeof(t_symbol));
+	return (to_ret);
 }
 
 void	parse_print_intels(t_data *data, t_current_nm *nm, t_symbol *current)
@@ -29,7 +32,7 @@ void	parse_print_intels(t_data *data, t_current_nm *nm, t_symbol *current)
 		return ;
 	if 	(current->name_index >= nm->str_sym_name_size)
 		return (nm_error(data, "corrupted symtab name intels"));
-	if (current->section_index >= nm->section_header_nb)
+	if (current->section_index >= nm->section_header_nb && current->section_index < SHN_LORESERVE)
 		return (nm_error(data, "corrupted symtab shndx"));
 }
 

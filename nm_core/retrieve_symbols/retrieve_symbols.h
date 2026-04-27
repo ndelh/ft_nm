@@ -20,14 +20,18 @@ void	retrieve_symtab_intels(t_data *data, t_current_nm *nm, void *cursor);
 void	retrieve_symbols_name(t_data *data, t_current_nm *nm);
 
 //retrieve loop utils
-int     alloc_print_node(t_data *data, t_current_nm *nm);
 void	parse_print_intels(t_data *data, t_current_nm *nm, t_symbol *current);
 
 //fetch symbol data
 void	fetch_type(t_current_nm *nm, t_symbol *current);
+void	retrieve_sym_loop_64(t_data *data, t_current_nm *nm);
+
+//list_function
+t_symbol	*alloc_node(t_data *data);
+void	    add_list(t_data *data, t_current_nm *nm);
+void	    assign_name(t_data *data, t_current_nm *nm, t_symbol *current_symbol);
 
 //symtab type header intels
-
 void    parse_symtab_intels(t_data *data, t_current_nm *nm);
 
 #endif

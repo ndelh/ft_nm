@@ -22,6 +22,7 @@ void	nm_loop(t_data *data)
 		data->current_file = *file;
 		init_nm(data);
 		retrieve_symbols(data, data->current_nm);
+		print_result(data, data->current_nm);
 		end_nm(data, data->current_nm);
 		++file;
 	}

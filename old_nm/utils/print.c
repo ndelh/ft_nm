@@ -30,15 +30,3 @@ void	print_simple_error(char *s)
 	ft_putendl_fd(s, 2);
 }
 
-void	print_error(char *s)
-{
-	char *a;
-
-	a = strerror(errno);
-	if (s)
-	{
-		ft_putendl_fd(s, 2);
-		ft_putchar_fd(32, 2);
-	}
-	ft_putendl_fd(a, 2);
-}

@@ -29,6 +29,17 @@ void	close_all(t_current_nm *nm)
 
 void	clean_current_nm(t_current_nm *nm)
 {
+	t_symbol	*list;
+	t_symbol	*tmp;
+
+	list = nm->print_list;
+	while (list)
+	{
+		tmp = list;
+		list = list->next;
+		free(tmp->name);
+		free(tmp);	
+	}
 	close_all(nm);
 	free_all(nm);
 }

@@ -18,6 +18,7 @@ SRC := main.c \
        nm_core/nm_core.c \
 	   nm_core/nm_utils/overflow_checker.c \
 	   nm_core/nm_utils/range_checker.c \
+	   nm_core/nm_utils/nm_cmp.c \
        nm_core/nm_print/nm_print.c \
        nm_core/nm_init/nm_init.c \
 	   nm_core/nm_init/retrieve_basics.c \
@@ -28,6 +29,10 @@ SRC := main.c \
 	   nm_core/retrieve_symbols/retrieve_symbols_name.c \
 	   nm_core/retrieve_symbols/retrieve_sym_loop_64.c \
 	   nm_core/retrieve_symbols/retrieve_sym_loop_utils.c \
+	   nm_core/retrieve_symbols/add_list.c \
+	   nm_core/retrieve_symbols/fetch_symbol_type.c \
+	   nm_core/retrieve_symbols/assign_name.c \
+	   nm_core/nm_print/print_result.c \
        nm_core/end_nm/end_nm.c \
        end/end.c \
 

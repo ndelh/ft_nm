@@ -34,6 +34,11 @@ int	    range_check(t_data *data, uint64_t offset, uint64_t struct_size,
 //retrieve sym_tab and content
 void	retrieve_symbols(t_data *data, t_current_nm *nm);
 
+//print
+void	print_result(t_data *data, t_current_nm *nm);
+void	print_table_name(char *s, uint64_t size, char *msg);
 
+//utils
+int		nm_comp(char *s1, char *s2);
 
 #endif

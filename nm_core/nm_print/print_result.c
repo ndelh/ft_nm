@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_result.c                                   :+:      :+:    :+:   */
+/*   print_result.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/18 19:56:28 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/19 11:53:17 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/27 14:23:24 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/27 14:25:48 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "nm_print.h"
 
 void	convert_hex_char(t_symbol *symbol, int size, char *s, char *base)
 {
@@ -35,7 +35,7 @@ void	convert_hex_char(t_symbol *symbol, int size, char *s, char *base)
 
 }
 
-void	print_value(t_symbol *symbol, t_nm *nm, char *base)
+void	print_value(t_data *data, t_symbol *symbol, t_current_nm *nm, char *base)
 {
 	char	*result;
 	int	max_size;
@@ -46,16 +46,27 @@ void	print_value(t_symbol *symbol, t_nm *nm, char *base)
 		max_size = 16;
 	result = malloc(max_size + 1);
 	if (!result)
-		return ;
+		return (nm_error(data, "malloc failed while trying to create reprensation of sym value"));
 	convert_hex_char(symbol, max_size, result, base);
-	if (symbol->symbol == 'U')
+	if (symbol->section_index == SHN_UNDEF)
 		ft_memset(result, 32, max_size);
 	ft_putstr_fd(result, 1);
-	write(1, " ", 1);
 	free(result);
 }
 
-void	print_list(t_symbol *symbol, t_nm *nm)
+void	display_data(t_data *data, t_symbol *symbol, t_current_nm *nm, char *base)
+{
+		if (data->flags & FLAG_u && symbol->section_index != SHN_UNDEF)
+			return ;
+		print_value(data, symbol, nm, base);
+		write(1, " ", 1);
+		ft_putchar_fd(symbol->symbol, 1);
+		write(1, " ", 1);
+		ft_putendl_fd(symbol->name, 1);
+		symbol = symbol->next;
+}
+
+void	print_list(t_data *data, t_symbol *symbol, t_current_nm *nm)
 {
 	char *base;
 
@@ -64,20 +75,19 @@ void	print_list(t_symbol *symbol, t_nm *nm)
 		return ;
 	while (symbol)
 	{
-		print_value(symbol, nm, base);
-		write(1, " ", 1);
-		ft_putchar_fd(symbol->symbol, 1);
-		write(1, " ", 1);
-		ft_putendl_fd(symbol->name, 1);
+		if ((symbol->type_info != STT_FILE && symbol->type_info != STT_SECTION) || (data->flags & FLAG_a))
+			display_data(data, symbol, nm, base);
 		symbol = symbol->next;
 	}
 	free(base);
 }
 
-void	display_result(t_nm *nm)
+void	print_result(t_data *data, t_current_nm *nm)
 {
-	if (!nm)
+	t_symbol	*list;
+
+	if (data->dead_nm)
 		return ;
-	if (nm->print_list)
-		print_list(nm->print_list, nm);
+	list = nm->print_list;
+	print_list(data, list, nm);
 }
