@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 11:13:17 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/17 09:21:09 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "nm_core.h"
-
-void	nm_loop(t_data *data)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char **file;
+	unsigned long int	i;
+	unsigned char		*p1;
+	unsigned char		*p2;
 
-	
-	file = data->file_to_nm;
-	while (*file)
+	if (!s1 && !s2)
+		return (0);
+	i = 0;
+	p1 = (unsigned char *)s1;
+	p2 = (unsigned char *)s2;
+	while (n--)
 	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
+		if (p1[i] != p2[i])
+			return (p1[i] - p2[i]);
+		i++;
 	}
+	return (0);
 }

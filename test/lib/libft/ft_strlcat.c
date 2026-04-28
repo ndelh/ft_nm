@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/10 12:25:41 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/17 14:04:18 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "libft.h"
 
-void	nm_loop(t_data *data)
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
-	char **file;
+	size_t	i;
+	size_t	j;
 
-	
-	file = data->file_to_nm;
-	while (*file)
-	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
-	}
+	if (n == 0 || n <= ft_strlen(dst))
+		return (n + ft_strlen(src));
+	i = ft_strlen(dst);
+	j = 0;
+	while (src[j] && i + 1 < n)
+		dst[i++] = src[j++];
+	dst[i] = '\0';
+	return (ft_strlen(dst) + ft_strlen(src + j));
 }

@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/07 11:32:04 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/10 06:52:42 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "nm_core.h"
-
-void	nm_loop(t_data *data)
+int	ft_isdigit(int c)
 {
-	char **file;
-
-	
-	file = data->file_to_nm;
-	while (*file)
-	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
-	}
+	if (c <= '9' && c >= '0')
+		return (2048);
+	else
+		return (0);
 }

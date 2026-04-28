@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 13:53:47 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/11 06:05:00 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "libft.h"
 
-void	nm_loop(t_data *data)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	char **file;
+	char	*cdest;
+	char	*csrc;
 
-	
-	file = data->file_to_nm;
-	while (*file)
+	if (!dest && !src)
+		return (0);
+	cdest = (char *)dest;
+	csrc = (char *)src;
+	if (cdest <= csrc)
 	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
+		while (n--)
+			*cdest++ = *csrc++;
 	}
+	if (cdest > csrc)
+	{
+		cdest += n - 1;
+		csrc += n - 1;
+		while (n--)
+			*cdest-- = *csrc--;
+	}
+	return (dest);
 }

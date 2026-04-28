@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/15 15:41:54 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/15 17:41:22 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "libft.h"
 
-void	nm_loop(t_data *data)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	char **file;
+	t_list	*temp;
 
-	
-	file = data->file_to_nm;
-	while (*file)
+	if ((!lst) || (!del))
+		return ;
+	while (*lst)
 	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
+		temp = *lst;
+		del(temp->content);
+		*lst = (temp->next);
+		free(temp);
 	}
+	*lst = NULL;
 }

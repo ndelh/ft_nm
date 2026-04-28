@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/09 11:07:56 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/13 17:10:13 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "libft.h"
 
-void	nm_loop(t_data *data)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size_dest)
 {
-	char **file;
+	size_t	i;
+	size_t	src_size;
 
-	
-	file = data->file_to_nm;
-	while (*file)
+	src_size = ft_strlen(src);
+	i = 0;
+	if (size_dest != 0)
 	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
+		while (src[i] && i < (size_dest - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
+	return (src_size);
 }

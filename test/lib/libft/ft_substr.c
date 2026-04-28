@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/12 22:47:24 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/17 09:15:21 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "libft.h"
 
-void	nm_loop(t_data *data)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char **file;
+	size_t	i;
+	char	*sub;
 
-	
-	file = data->file_to_nm;
-	while (*file)
+	if (!s)
+		return (0);
+	i = ft_strlen(s);
+	if (start >= i)
 	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
+		sub = ft_calloc(1, 1);
+		if (!sub)
+			return (0);
+		return (sub);
 	}
+	i = i - start;
+	if (i > len)
+		i = len;
+	sub = ft_calloc(1, i + 1);
+	if (!sub)
+		return (0);
+	ft_memcpy(sub, s + start, i);
+	return (sub);
 }

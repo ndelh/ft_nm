@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   end.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/28 11:46:04 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/28 16:29:27 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "../tester.h"
 
-void	nm_loop(t_data *data)
+void	close_fd(t_data *data)
 {
-	char **file;
+	if (data->true_nm != -1)
+		close(data->true_nm);
+	if (data->my_nm != -1)
+		close(data->my_nm);
+}
 
-	
-	file = data->file_to_nm;
-	while (*file)
-	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
-	}
+void	ft_end(t_data **data)
+{
+	if (!*data || !data)
+		return ;
+	close_fd(*data);
+	free_tab((*data)->standard_file_list);
+	free_list((*data)->standard_test_list);
+	free((*data)->my_nm_path);
+	free((*data)->nm_path);
+	free(*data);
+	*data = NULL;
 }

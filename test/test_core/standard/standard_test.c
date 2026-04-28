@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   standard_test.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/28 16:45:41 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/28 18:30:33 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "../tester_core.h"
 
-void	nm_loop(t_data *data)
+void	standard_test(t_data *data)
 {
-	char **file;
+	t_test	*list;
 
-	
-	file = data->file_to_nm;
-	while (*file)
+	list = data->standard_test_list;
+	while (list)
 	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
+		list->prog_args[0] = data->nm_path;
+		true_nm_fork(list, data);
+		list->prog_args[0] = data->my_nm_path;
+		my_nm_fork(list, data);
+		list = list->next;
 	}
 }

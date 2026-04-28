@@ -34,7 +34,7 @@ int    active_flags(t_data *data, char *s)
             else if (*s == 'r')
                 data->flags |= FLAG_r;
             else if (*s == 'p')
-                data->flags = FLAG_p;
+                data->flags |= FLAG_p;
             else
                 return (unsupported_char(s));
             ++s;
@@ -53,5 +53,5 @@ int    retrieve_flags(t_data *data, char **argv)
                     return (1);
             ++argv;
         }
-        return (0);
+        return (0); 
 }

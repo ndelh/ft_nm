@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 08:48:14 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/10 07:40:32 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "nm_core.h"
-
-void	nm_loop(t_data *data)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	char **file;
+	size_t				i;
+	unsigned char		*p;
 
-	
-	file = data->file_to_nm;
-	while (*file)
+	i = 0;
+	p = s;
+	while (i < n)
 	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
+		p[i] = c;
+		i++;
 	}
+	return (s);
 }

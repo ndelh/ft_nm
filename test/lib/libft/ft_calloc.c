@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/10 05:17:54 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/11 07:18:19 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "libft.h"
 
-void	nm_loop(t_data *data)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	char **file;
+	void	*array;
+	size_t	a_size;
 
-	
-	file = data->file_to_nm;
-	while (*file)
-	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
-	}
+	if (nmemb >= 65535 || size >= 65535)
+		return (NULL);
+	a_size = (nmemb * size);
+	if (a_size <= 0)
+		array = malloc(1);
+	else
+		array = malloc(a_size);
+	if (!array)
+		return (0);
+	ft_bzero(array, a_size);
+	return (array);
 }

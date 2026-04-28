@@ -31,7 +31,7 @@ int	main(int ac, char **argv)
 	data = NULL;
 	if (alloc_data(&data))
 		return (1);
-	retrieve_args(data, ac, argv);
-	nm_loop(data);
+	if (!retrieve_args(data, ac, argv))
+		nm_loop(data);
 	ft_end(data);
 }

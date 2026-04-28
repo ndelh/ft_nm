@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/12 17:14:08 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/12 17:33:27 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "nm_core.h"
-
-void	nm_loop(t_data *data)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char **file;
+	char	*join;
+	size_t	i;
+	size_t	j;
 
-	
-	file = data->file_to_nm;
-	while (*file)
-	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
-	}
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	join = ft_calloc(1, i + j + 1);
+	if (!join)
+		return (0);
+	ft_strlcat(join, s1, i + 1);
+	ft_strlcat(join, s2, i + j + 1);
+	return (join);
 }

@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 19:48:16 by ndelhota         ###   ########.fr       */
+/*   Created: 2024/10/08 13:28:50 by ndelhota          #+#    #+#             */
+/*   Updated: 2024/10/13 17:04:51 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-#include "nm_core.h"
-
-void	nm_loop(t_data *data)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char **file;
+	unsigned char	*desta;
+	unsigned char	*srca;
+	size_t			i;
 
-	
-	file = data->file_to_nm;
-	while (*file)
+	srca = (unsigned char *)src;
+	desta = (unsigned char *)dest;
+	i = 0;
+	if (!dest && !src)
+		return (NULL);
+	while (n--)
 	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
+		desta[i] = srca[i];
+		i++;
 	}
+	return (dest);
 }

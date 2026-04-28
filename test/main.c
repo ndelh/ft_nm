@@ -5,54 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:23:44 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/11 15:07:33 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/04/28 11:06:34 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/04/28 16:57:25 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <sys/mman.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
+#include "tester.h"
 
-int	open_executable(char *s)
+char	g_diff_path[] = "/usr/bin/nm";
+
+void	init_process(t_data *data)
 {
-	int	to_ret;
-
-	to_ret = open(s, O_RDONLY);
-	if (to_ret == -1)
-		perror("cannot open executable because");
-	return (to_ret);
+	create_doc(data);
+	if (data->my_nm != -1)
+		gen_standard_file_list(data);
+	if (data->standard_file_list)
+		gen_standard_test_list(data);
 }
 
-void	launch_nm(int fd)
+int	main(int ac, char **argv, char **envp)
 {
-	if (fd <= 0)
-		return ;
-}
+	t_data	*data;
 
-void	ft_end(int fd)
-{
-	if (fd >= 0)
-		close(fd);
-}
-
-int	get_size(void)
-{
-	int	to_ret;
-
-	to_ret = getpagesize();
-	printf("page size is: %i\n", to_ret);
-	return (to_ret);
-}
-
-int	main(int ac, char **argv)
-{
-	int	file;
-
-	if (ac != 2)
+	data = NULL;
+	(void)argv;
+	if (ac != 1)
+	{
+		ft_putendl_fd("invalid arg number", 2);
 		return (1);
-	file = open_executable(argv[1]);
-	launch_nm(file);
-	ft_end(file);
+	}
+	data_init(&data, envp);
+	if (!data)
+	{
+		ft_end(&data);
+		return (1);
+	}
+	if (data)
+		init_process(data);
+	if (data->standard_test_list)
+		test_core(data);
+	ft_end(&data);
+	return (0);
 }
