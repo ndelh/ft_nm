@@ -104,7 +104,7 @@ void	print_result(t_data *data, t_current_nm *nm)
 	}
 	if (!list)
 		ft_putendl_fd("no symbols", 1);
-	if (data->flags & FLAG_r)
+	if (data->flags & FLAG_r && !(data->flags & FLAG_p))
 		print_in_reverse(data, list, nm);
 	else
 		print_list(data, list, nm);
