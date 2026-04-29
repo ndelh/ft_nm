@@ -20,6 +20,7 @@ void	init_process(t_data *data)
 	if (data->standard_file_list)
 		gen_standard_test_list(data);
 	gen_function_tab(data);
+	gen_flag_tab(data);
 }
 
 int	main(int ac, char **argv, char **envp)

@@ -17,6 +17,7 @@ SRC := main.c \
        init/gen_standard_file_list.c \
        init/gen_standard_test_list.c \
        init/gen_func_tab.c \
+       init/gen_flag_tab.c \
        utils/tab_utils.c \
        utils/list_utils.c \
        test_core/tester_core.c \

@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 15:14:03 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/28 17:24:30 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/29 23:33:58 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int	alloc_attribute_node_content(t_test *node, char *s, char *nm_path)
 {
 	char	**tab;
-	
-	tab = malloc(sizeof(char *) * 10);
+
+	tab = malloc(sizeof(char *) * 4);
 	if (!tab)
 	{
 		free(node);
 		return (1);
 	}
-	ft_memset(tab, 0, sizeof(char *) * 10);
+	ft_memset(tab, 0, sizeof(char *) * 4);
 	tab[0] = nm_path;
 	tab[1] = s;
 	node->prog_path = s;
@@ -36,10 +36,10 @@ t_test	*alloc_node(char *s, char *nm_path)
 
 	to_ret = malloc(sizeof(t_test));
 	if (!to_ret)
-		return NULL;
+		return (NULL);
 	ft_memset(to_ret, 0, sizeof(t_test));
 	if (alloc_attribute_node_content(to_ret, s, nm_path))
-		return NULL;
+		return (NULL);
 	return (to_ret);
 }
 

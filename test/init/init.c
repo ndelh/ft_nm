@@ -6,13 +6,13 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:39:40 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/28 12:51:48 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/29 23:34:17 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../tester.h"
 
-t_data	*alloc_data()
+t_data	*alloc_data(void)
 {
 	t_data	*to_ret;
 
@@ -38,11 +38,25 @@ t_data	*alloc_data()
 	return (to_ret);
 }
 
+void	alloc_flag_line(t_data *data)
+{
+	data->flag_line = ft_strdup("aupgr");
+	if (!data->flag_line)
+	{
+		perror("failed_init_alloc");
+		ft_end(&data);
+		exit(1);
+	}
+}
+
 void	data_init(t_data **data, char **envp)
 {
 	*data = alloc_data();
 	if (!*data)
+	{
 		perror("data alloc failed");
-	else
-		(*data)->envp = envp;
+		return ;
+	}
+	(*data)->envp = envp;
+	alloc_flag_line(*data);
 }

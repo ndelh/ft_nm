@@ -27,9 +27,11 @@ void	ft_end(t_data **data)
 	close_fd(*data);
 	free_tab((*data)->standard_file_list);
 	free_tab((*data)->diff_tab);
+	free_tab((*data)->flag_tab);
 	free_list((*data)->standard_test_list);
 	free((*data)->my_nm_path);
 	free((*data)->nm_path);
+	free((*data)->flag_line);
 	free(*data);
 	*data = NULL;
 }

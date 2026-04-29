@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 14:20:39 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/28 15:01:16 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/04/29 23:33:05 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	fill_list(char **list, t_data *data)
 
 char	**alloc_file_list(void)
 {
-	char **to_ret;
+	char	**to_ret;
 
 	to_ret = malloc(sizeof(char *) * 21);
 	if (!to_ret)
@@ -36,7 +36,7 @@ char	**alloc_file_list(void)
 void	gen_standard_file_list(t_data *data)
 {
 	char	**list;
-	
+
 	list = alloc_file_list();
 	if (!list)
 		return ;
