@@ -43,6 +43,7 @@ typedef struct s_data
 {
 	char			**envp;
 	char			**standard_file_list;
+	char			**diff_tab;
 	char			*nm_path;
 	char			*my_nm_path;
 	int				true_nm;
@@ -52,8 +53,9 @@ typedef struct s_data
 
 //init
 void	data_init(t_data **data, char **envp);
-void	create_doc(t_data *data);
 void	gen_standard_file_list(t_data *data);
+void	gen_function_tab(t_data *data);
+char	*gen_tab_line(char *s, t_data *data);
 int	gen_standard_test_list(t_data *data);
 //end
 void	ft_end(t_data **data);

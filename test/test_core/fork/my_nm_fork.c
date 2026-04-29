@@ -14,14 +14,12 @@
 
 void	exec_my_nm(t_test *node, t_data *data)
 {
-    printf("entry\n");
 	if (dup2(data->my_nm, STDOUT_FILENO) == -1)
 	{
 		ft_end(&data);
 		exit(1);
 	}
-	close(data->my_nm);
-    close(data->true_nm);
+	close_doc(data);
 	data->true_nm = -1;
 	execve(data->my_nm_path, node->prog_args, data->envp);
 	perror("my_nm failed to exec");

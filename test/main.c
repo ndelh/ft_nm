@@ -16,11 +16,10 @@ char	g_diff_path[] = "/usr/bin/nm";
 
 void	init_process(t_data *data)
 {
-	create_doc(data);
-	if (data->my_nm != -1)
-		gen_standard_file_list(data);
+	gen_standard_file_list(data);
 	if (data->standard_file_list)
 		gen_standard_test_list(data);
+	gen_function_tab(data);
 }
 
 int	main(int ac, char **argv, char **envp)

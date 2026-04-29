@@ -19,10 +19,13 @@ void	standard_test(t_data *data)
 	list = data->standard_test_list;
 	while (list)
 	{
+		create_doc(data);
 		list->prog_args[0] = data->nm_path;
 		true_nm_fork(list, data);
 		list->prog_args[0] = data->my_nm_path;
 		my_nm_fork(list, data);
+		close_doc(data);
+		diff_test(data, list);
 		list = list->next;
 	}
 }

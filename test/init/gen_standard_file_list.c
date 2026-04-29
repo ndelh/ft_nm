@@ -12,11 +12,13 @@
 
 #include "../tester.h"
 
-void	fill_list(char **list)
+void	fill_list(char **list, t_data *data)
 {
-	list[0] = ft_strdup("tested_binary/minishell");
-	list[1] = ft_strdup("ft_nm");
-	list[2] = ft_strdup("tested_binary/nm_target");
+	list[0] = gen_tab_line("tested_binary/minishell", data);
+	list[1] = gen_tab_line("ft_nm", data);
+	list[2] = gen_tab_line("tested_binary/nm_target", data);
+	list[3] = gen_tab_line("nm_tester", data);
+	list[4] = gen_tab_line("tested_binary/ircserv", data);
 }
 
 char	**alloc_file_list(void)
@@ -38,6 +40,6 @@ void	gen_standard_file_list(t_data *data)
 	list = alloc_file_list();
 	if (!list)
 		return ;
-	fill_list(list);
+	fill_list(list, data);
 	data->standard_file_list = list;
 }

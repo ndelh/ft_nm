@@ -14,15 +14,17 @@ NAME := nm_tester
 
 SRC := main.c \
        init/init.c \
-       init/create_doc.c \
        init/gen_standard_file_list.c \
        init/gen_standard_test_list.c \
+       init/gen_func_tab.c \
        utils/tab_utils.c \
        utils/list_utils.c \
        test_core/tester_core.c \
        test_core/standard/standard_test.c \
        test_core/fork/true_nm_fork.c \
+       test_core/fork/diff_popen_read.c \
        test_core/fork/my_nm_fork.c \
+       test_core/test_utils/manage_doc.c \
        end/end.c \
 
 CC := cc

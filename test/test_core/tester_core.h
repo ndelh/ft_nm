@@ -21,5 +21,10 @@ void	standard_test(t_data *data);
 //fork
 void	true_nm_fork(t_test *test_node, t_data *data);
 void    my_nm_fork(t_test *test_node, t_data *data);
+void	diff_test(t_data *data, t_test *node);
+
+//utils
+void	create_doc(t_data *data);
+void	close_doc(t_data *data);
 
 #endif
