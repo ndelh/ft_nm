@@ -48,24 +48,29 @@ int	diff_launch(t_data *data)
 	return (pipe_fd[0]);
 }
 
-void	diff_test(t_data *data, t_test *node)
+void	diff_test(t_data *data, t_test *node, char *flags)
 {
 	int	result;
 	int	read_nb;
 	char	buff[2];
 
-	(void)node;
 	result = diff_launch(data);
 	read_nb = read(result, buff, 1);
 	ft_putstr_fd("tested binary: ", 1);
-	ft_putendl_fd(node->prog_path, 1);
+	ft_putstr_fd(node->prog_path, 1);
+	if (!flags)
+		ft_putchar_fd('\n', 1);
+	else
+	{
+		ft_putstr_fd(" with the following flags:", 1);
+		ft_putendl_fd(flags, 1);
+	}
 	if (read_nb == -1)
 		ft_putendl_fd("error while reading from custom popen returned fd", 2);
 	else if (read_nb)
-		ft_putendl_fd("diff ko", 1);
+		ft_putendl_fd("DIFF KO", 1);
 	else
-		ft_putendl_fd("success", 1);
+		ft_putendl_fd("SUCCESS", 1);
 	close(result);
-
 }
 

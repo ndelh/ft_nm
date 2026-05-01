@@ -17,11 +17,12 @@
 
 //standard_test
 void	standard_test(t_data *data);
+void	flag_test(t_data *data);
 
 //fork
 void	true_nm_fork(t_test *test_node, t_data *data);
 void    my_nm_fork(t_test *test_node, t_data *data);
-void	diff_test(t_data *data, t_test *node);
+void	diff_test(t_data *data, t_test *node, char *flags);
 
 //utils
 void	create_doc(t_data *data);
