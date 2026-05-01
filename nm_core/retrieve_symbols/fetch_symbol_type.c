@@ -23,7 +23,7 @@ unsigned char	weak_case(uint16_t section_index, unsigned char info)
 	}
 	if (section_index == SHN_UNDEF)
 		return ('w');
-	return ('W');
+	return ('W');	
 }
 
 unsigned char	is_special(uint16_t section_index, unsigned char info)
@@ -75,7 +75,7 @@ void	fetch_type(t_current_nm *nm, t_symbol *current)
 	type = is_special(current->section_index, current->type_info);
 	if (!type)
 		type = common_value(nm, current);
-	if (type != 'U' && ELF64_ST_BIND(current->type_info) == STB_LOCAL)
+	if (type != 'U' && ELF64_ST_BIND(current->type_info) == STB_LOCAL && type != 'N')
         type = ft_tolower(type);
 	current->symbol = type;
 }

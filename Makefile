@@ -28,12 +28,12 @@ SRC := main.c \
 	   nm_core/retrieve_symbols/retrieve_symtab_intels.c \
 	   nm_core/retrieve_symbols/retrieve_symbols_name.c \
 	   nm_core/retrieve_symbols/retrieve_sym_loop_64.c \
+	   nm_core/retrieve_symbols/retrieve_sym_loop_32.c \
 	   nm_core/retrieve_symbols/retrieve_sym_loop_utils.c \
 	   nm_core/retrieve_symbols/add_list.c \
 	   nm_core/retrieve_symbols/fetch_symbol_type.c \
 	   nm_core/retrieve_symbols/assign_name.c \
 	   nm_core/nm_print/print_result.c \
-	   nm_core/nm_print/print_in_reverse.c \
        nm_core/end_nm/end_nm.c \
        end/end.c \
 

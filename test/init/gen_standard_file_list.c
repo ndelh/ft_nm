@@ -19,6 +19,8 @@ void	fill_list(char **list, t_data *data)
 	list[2] = gen_tab_line("tested_binary/nm_target", data);
 	list[3] = gen_tab_line("nm_tester", data);
 	list[4] = gen_tab_line("tested_binary/ircserv", data);
+	list[5] = gen_tab_line("tested_binary/librraudit_32.so", data);
+	list[6] = gen_tab_line("tested_binary/libextnet.so", data);
 }
 
 char	**alloc_file_list(void)

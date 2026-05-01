@@ -30,6 +30,8 @@ void	retrieve_symbols(t_data *data, t_current_nm *nm)
 			retrieve_symtab_intels(data, nm, cursor);
 			if (nm->class == ELFCLASS64)
 				retrieve_sym_loop_64(data, nm);
+			else
+				retrieve_sym_loop_32(data, nm);
 		}
 		cursor += nm->section_header_size;
 		--iteration;

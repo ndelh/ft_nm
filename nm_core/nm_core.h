@@ -33,6 +33,7 @@ int	    range_check(t_data *data, uint64_t offset, uint64_t struct_size,
 
 //retrieve sym_tab and content
 void	retrieve_symbols(t_data *data, t_current_nm *nm);
+void	retrieve_sym_loop_32(t_data *data, t_current_nm *nm);
 
 //print
 void	print_result(t_data *data, t_current_nm *nm);

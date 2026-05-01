@@ -58,13 +58,12 @@ void	diff_test(t_data *data, t_test *node, char *flags)
 	read_nb = read(result, buff, 1);
 	ft_putstr_fd("tested binary: ", 1);
 	ft_putstr_fd(node->prog_path, 1);
-	if (!flags)
-		ft_putchar_fd('\n', 1);
-	else
+	if (flags)
 	{
-		ft_putstr_fd(" with the following flags:", 1);
-		ft_putendl_fd(flags, 1);
+		ft_putstr_fd(" with the following flags: ", 1);
+		ft_putstr_fd(flags, 1);
 	}
+	ft_putchar_fd(32, 1);
 	if (read_nb == -1)
 		ft_putendl_fd("error while reading from custom popen returned fd", 2);
 	else if (read_nb)

@@ -12,17 +12,17 @@
 
 #include "retrieve_symbols.h"
 
-int64_t	tie_breaker(t_symbol *a, t_symbol *b)
+int64_t	tie_breaker(t_data *data, t_symbol *a, t_symbol *b)
 {
 		int64_t	to_ret;
 	
 		to_ret = nm_comp(a->name, b->name);
-		if (!to_ret)
-			to_ret = a->value - b->value;
+		if (data->flags & FLAG_r)
+			to_ret *= -1;
 		return (to_ret);
 }
 
-int		no_maj_cmp(char *s1, char *s2)
+int		no_maj_cmp(t_data *data, char *s1, char *s2)
 {
 		unsigned char	a;
 		unsigned char	b;
@@ -42,17 +42,19 @@ int		no_maj_cmp(char *s1, char *s2)
 		}
 		a = ft_tolower(*s1);
 		b = ft_tolower(*s2);
+		if (data->flags & FLAG_r)
+			return (b - a);
 		return (a - b);
 }
 
 
-int		insert_first(t_current_nm *nm, t_symbol *current)
+int		insert_first(t_data *data, t_current_nm *nm, t_symbol *current)
 {
 		int64_t	comp;
 
-		comp = no_maj_cmp(nm->print_list->name, current->name);
+		comp = no_maj_cmp(data, nm->print_list->name, current->name);
 		if (!comp)
-			comp = tie_breaker(nm->print_list, current);
+			comp = tie_breaker(data, nm->print_list, current);
 		if (comp > 0)
 		{
 			current->next = nm->print_list;
@@ -62,19 +64,19 @@ int		insert_first(t_current_nm *nm, t_symbol *current)
 		}
 		return (0);
 }
-void	insert_list(t_current_nm *nm, t_symbol *current)
+void	insert_list(t_data *data, t_current_nm *nm, t_symbol *current)
 {
 	t_symbol	*list;
 	int64_t	comp;
 
 	list = nm->print_list;
-	if (insert_first(nm, current))
+	if (insert_first(data, nm, current))
 		return ;
 	while (list->next)
 	{
-		comp = no_maj_cmp(list->next->name, current->name);
+		comp = no_maj_cmp(data, list->next->name, current->name);
 		if (!comp)
-			comp = tie_breaker(list->next, current);
+			comp = tie_breaker(data, list->next, current);
 		if (comp > 0)
 			break ;
 		list = list->next;
@@ -106,6 +108,6 @@ void	add_list(t_data *data, t_current_nm *nm)
 	else if (data->flags & FLAG_p)
 		add_back(nm);
 	else
-		insert_list(nm, nm->current);
+		insert_list(data, nm, nm->current);
 	nm->current = NULL;
 }
