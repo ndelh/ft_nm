@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 11:57:52 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/23 12:01:46 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 22:16:07 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	retrieve_symbols(t_data *data, t_current_nm *nm)
 {
 	void	*cursor;
 	size_t	iteration;
-	
+
 	if (data->dead_nm)
 		return ;
 	cursor = nm->map_begin + nm->section_header_offset;

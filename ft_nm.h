@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 15:07:57 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/14 14:05:00 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 22:36:34 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,35 +25,35 @@
 # include <stdbool.h>
 # include "./lib/libft/libft.h"
 
-# define FLAG_a (1 << 0)
-# define FLAG_g (1 << 1)
-# define FLAG_u (1 << 2)
-# define FLAG_r (1 << 3)
-# define FLAG_p (1 << 4)
+# define FLAG_A 1 
+# define FLAG_G 2
+# define FLAG_U 4
+# define FLAG_R 8
+# define FLAG_P 16
 
-typedef	struct s_symbol
+typedef struct s_symbol
 {
-	uint64_t 		value;
+	uint64_t		value;
 	uint64_t		name_index;
 	uint16_t		section_index;
-	uint64_t 		flags;
-	uint32_t 		type;
+	uint64_t		flags;
+	uint32_t		type;
 	char			*name;
 	char			symbol;
 	unsigned char	type_info;
 	uint64_t		sym_size;
-	struct s_symbol *next;
+	struct s_symbol	*next;
 	struct s_symbol	*previous;
-} t_symbol;
+}	t_symbol;
 
 typedef struct s_current_nm
 {
-	int	fd;
+	int				fd;
 	//file intels
-	int class;
-	int version;
-	int	endian;
-	int	osabi;
+	int				class;
+	int				version;
+	int				endian;
+	int				osabi;
 	uint64_t		section_header_offset;
 	uint64_t		section_header_nb;
 	uint64_t		section_header_size;
@@ -77,7 +77,7 @@ typedef struct s_current_nm
 	uint64_t		file_size;
 	t_symbol		*print_list;
 	t_symbol		*current;
-} t_current_nm;
+}	t_current_nm;
 
 typedef struct s_data
 {
@@ -87,11 +87,11 @@ typedef struct s_data
 	char					*current_file;
 	struct s_current_nm		*current_nm;
 	bool					dead_nm;
-	
+
 }	t_data;
 
 //args retrieving and flags settings
-int	retrieve_args(t_data *data, int ac, char **argv);
+int		retrieve_args(t_data *data, int ac, char **argv);
 
 //nm_core
 void	nm_loop(t_data *data);

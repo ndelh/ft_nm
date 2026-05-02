@@ -26,15 +26,15 @@ int	active_flags(t_data *data, char *s)
 	while (*s)
 	{
 		if (*s == 'a')
-			data->flags |= FLAG_a;
+			data->flags |= FLAG_A;
 		else if (*s == 'g')
-			data->flags |= FLAG_g;
+			data->flags |= FLAG_G;
 		else if (*s == 'u')
-			data->flags |= FLAG_u;
+			data->flags |= FLAG_U;
 		else if (*s == 'r')
-			data->flags |= FLAG_r;
+			data->flags |= FLAG_R;
 		else if (*s == 'p')
-			data->flags |= FLAG_p;
+			data->flags |= FLAG_P;
 		else
 			return (unsupported_char(s));
 		++s;

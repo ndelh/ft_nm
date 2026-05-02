@@ -1,37 +1,11 @@
-0000000000001120 t deregister_tm_clones
-0000000000001150 t register_tm_clones
-0000000000001190 t __do_global_dtors_aux
-0000000000004008 b completed.0
-0000000000003d58 d __do_global_dtors_aux_fini_array_entry
-00000000000011d0 t frame_dummy
-0000000000003d50 d __frame_dummy_init_array_entry
-00000000000011e0 t socketOptionSupported
-0000000000002440 r __FRAME_END__
-00000000000017d0 t _fini
-0000000000004000 d __dso_handle
-0000000000003d60 d _DYNAMIC
-0000000000002158 r __GNU_EH_FRAME_HDR
-0000000000004008 d __TMC_END__
-0000000000003f90 d _GLOBAL_OFFSET_TABLE_
-0000000000001000 t _init
                  U __errno_location@GLIBC_2.2.5
                  w _ITM_deregisterTMCloneTable
-00000000000016b0 T Java_jdk_net_LinuxSocketOptions_getTcpKeepAliveTime0
                  U setsockopt@GLIBC_2.2.5
                  U JNU_ThrowByNameWithLastError
                  U close@GLIBC_2.2.5
                  U getsockopt@GLIBC_2.2.5
-0000000000001500 T Java_jdk_net_LinuxSocketOptions_setTcpKeepAliveTime0
                  w __gmon_start__
-0000000000001270 T Java_jdk_net_LinuxSocketOptions_setQuickAck0
-0000000000001620 T Java_jdk_net_LinuxSocketOptions_getTcpkeepAliveProbes0
-0000000000001470 T Java_jdk_net_LinuxSocketOptions_setTcpkeepAliveProbes0
                  U JNU_ThrowByName
-0000000000001740 T Java_jdk_net_LinuxSocketOptions_getTcpKeepAliveIntvl0
-0000000000001590 T Java_jdk_net_LinuxSocketOptions_setTcpKeepAliveIntvl0
-0000000000001430 T Java_jdk_net_LinuxSocketOptions_keepAliveOptionsSupported0
-00000000000013b0 T Java_jdk_net_LinuxSocketOptions_quickAckSupported0
                  w _ITM_registerTMCloneTable
                  w __cxa_finalize@GLIBC_2.2.5
-0000000000001300 T Java_jdk_net_LinuxSocketOptions_getQuickAck0
                  U socket@GLIBC_2.2.5

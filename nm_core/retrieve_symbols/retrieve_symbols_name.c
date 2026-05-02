@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/23 18:04:07 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/23 18:10:36 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 22:20:11 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	fetch_sym_name_64(t_current_nm *nm, Elf64_Shdr *symtab_name)
 void	parse_retrieve_symtab_content(t_data *data, t_current_nm *nm)
 {
 	if (range_check(data, nm->str_sym_name_offset, 1, nm->str_sym_name_size,
-		"invalid linked strtab content"))
-			return ;
+			"invalid linked strtab content"))
+		return ;
 	nm->sym_name = nm->map_begin + nm->str_sym_name_offset;
 	if (nm->sym_name[nm->str_sym_name_size - 1] != 0)
 		return (nm_error(data, "syn name table not closed"));

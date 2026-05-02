@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/27 14:23:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/27 14:25:48 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:55:40 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	convert_hex_char(t_symbol *symbol, int size, char *s, char *base)
 {
-	uint64_t value;
+	uint64_t	value;
 
 	if (!symbol->value)
 	{
@@ -32,13 +32,13 @@ void	convert_hex_char(t_symbol *symbol, int size, char *s, char *base)
 		*s = base[value % 16];
 		value /= 16;
 	}
-
 }
 
-void	print_value(t_data *data, t_symbol *symbol, t_current_nm *nm, char *base)
+void	print_value(t_data *data, t_symbol *symbol,
+		t_current_nm *nm, char *base)
 {
 	char	*result;
-	int	max_size;
+	int		max_size;
 
 	if (nm->class == ELFCLASS32)
 		max_size = 8;
@@ -46,7 +46,8 @@ void	print_value(t_data *data, t_symbol *symbol, t_current_nm *nm, char *base)
 		max_size = 16;
 	result = malloc(max_size + 1);
 	if (!result)
-		return (nm_error(data, "malloc failed while trying to create reprensation of sym value"));
+		return (nm_error(data,
+				"malloc failed while printing base 16 or 8"));
 	convert_hex_char(symbol, max_size, result, base);
 	if (symbol->section_index == SHN_UNDEF)
 		ft_memset(result, 32, max_size);
@@ -54,23 +55,24 @@ void	print_value(t_data *data, t_symbol *symbol, t_current_nm *nm, char *base)
 	free(result);
 }
 
-void	display_data(t_data *data, t_symbol *symbol, t_current_nm *nm, char *base)
+void	display_data(t_data *data, t_symbol *symbol,
+				t_current_nm *nm, char *base)
 {
-		if (data->flags & FLAG_u && symbol->section_index != SHN_UNDEF)
-			return ;
-		if (data->flags & FLAG_g && ELF64_ST_BIND(symbol->type_info) == STB_LOCAL)
-			return ;
-		print_value(data, symbol, nm, base);
-		write(1, " ", 1);
-		ft_putchar_fd(symbol->symbol, 1);
-		write(1, " ", 1);
-		ft_putendl_fd(symbol->name, 1);
-		symbol = symbol->next;
+	if (data->flags & FLAG_U && symbol->section_index != SHN_UNDEF)
+		return ;
+	if (data->flags & FLAG_G && ELF64_ST_BIND(symbol->type_info) == STB_LOCAL)
+		return ;
+	print_value(data, symbol, nm, base);
+	write(1, " ", 1);
+	ft_putchar_fd(symbol->symbol, 1);
+	write(1, " ", 1);
+	ft_putendl_fd(symbol->name, 1);
+	symbol = symbol->next;
 }
 
 void	print_list(t_data *data, t_symbol *symbol, t_current_nm *nm)
 {
-	char *base;
+	char	*base;
 
 	if (!symbol)
 		return ;
@@ -79,7 +81,8 @@ void	print_list(t_data *data, t_symbol *symbol, t_current_nm *nm)
 		return (nm_error(data, "failed alloc for hex base"));
 	while (symbol)
 	{
-		if ((symbol->type_info != STT_FILE && symbol->type_info != STT_SECTION) || (data->flags & FLAG_a))
+		if ((symbol->type_info != STT_FILE && symbol->type_info != STT_SECTION)
+			|| (data->flags & FLAG_A))
 			display_data(data, symbol, nm, base);
 		symbol = symbol->next;
 	}
@@ -90,17 +93,20 @@ void	print_result(t_data *data, t_current_nm *nm)
 {
 	t_symbol	*list;
 
+	if (data->file_nb > 1)
+		ft_putchar_fd('\n', 1);
 	if (data->dead_nm)
 		return ;
 	list = nm->print_list;
 	if (!list || data->file_nb > 1)
 	{
-		ft_putstr_fd("nm : '", 1);
+		if (!list)
+			ft_putstr_fd("nm : ", 1);
 		ft_putstr_fd(data->current_file, 1);
 		if (!list)
-			ft_putstr_fd("': ", 1);
+			ft_putstr_fd(": ", 1);
 		else
-			ft_putendl_fd("':'", 1);
+			ft_putendl_fd(":", 1);
 	}
 	if (!list)
 		ft_putendl_fd("no symbols", 1);

@@ -6,16 +6,17 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/01 15:23:54 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/05/01 15:24:21 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 22:21:35 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "retrieve_symbols.h"
 
-void	retrieve_print_intels_32(t_data *data, t_current_nm *nm, Elf32_Sym *cursor)
+void	retrieve_print_intels_32(t_data *data, t_current_nm *nm,
+		Elf32_Sym *cursor)
 {
-	t_symbol *current_sym;
-	
+	t_symbol	*current_sym;
+
 	current_sym = alloc_node(data);
 	if (!current_sym)
 		return (nm_error(data, "failed to allocate symbol node"));
@@ -34,8 +35,8 @@ void	retrieve_sym_loop_32(t_data *data, t_current_nm *nm)
 
 	if (data->dead_nm)
 		return ;
-	if (nm->symtab_content_size % nm->symstruct_size ||
-		nm->symstruct_size != sizeof(Elf32_Sym))
+	if (nm->symtab_content_size % nm->symstruct_size
+		|| nm->symstruct_size != sizeof(Elf32_Sym))
 		return (nm_error(data, "corrupted sym section size"));
 	cursor = nm->map_begin + nm->symtab_content_offset;
 	iteration = nm->symtab_content_size / sizeof(Elf32_Sym);

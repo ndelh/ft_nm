@@ -1,37 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add_list_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/11 14:04:24 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/05/02 22:37:27 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/05/02 22:07:08 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/05/02 22:12:24 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_nm.h" 
+#include "retrieve_symbols.h"
 
-int	alloc_data(t_data **data)
+void	add_back(t_current_nm *nm)
 {
-	*data = malloc(sizeof(t_data));
-	if (!data)
-	{
-		perror("failed to allocate main_struct");
-		return (1);
-	}
-	ft_memset(*data, 0, sizeof(t_data));
-	return (0);
-}
+	t_symbol	*list;
 
-int	main(int ac, char **argv)
-{
-	t_data	*data;
-
-	data = NULL;
-	if (alloc_data(&data))
-		return (1);
-	if (!retrieve_args(data, ac, argv))
-		nm_loop(data);
-	ft_end(data);
+	list = nm->print_list;
+	while (list->next)
+		list = list->next;
+	list->next = nm->current;
+	nm->current->previous = list;
 }

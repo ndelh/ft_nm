@@ -31,6 +31,7 @@ SRC := main.c \
 	   nm_core/retrieve_symbols/retrieve_sym_loop_32.c \
 	   nm_core/retrieve_symbols/retrieve_sym_loop_utils.c \
 	   nm_core/retrieve_symbols/add_list.c \
+	   nm_core/retrieve_symbols/add_list_utils.c \
 	   nm_core/retrieve_symbols/fetch_symbol_type.c \
 	   nm_core/retrieve_symbols/assign_name.c \
 	   nm_core/nm_print/print_result.c \
