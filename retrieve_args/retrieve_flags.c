@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 18:18:56 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 18:19:07 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:31:53 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,38 @@ int	unsupported_char(char *s)
 	return (1);
 }
 
-int    active_flags(t_data *data, char *s)
+int	active_flags(t_data *data, char *s)
 {
-        ++s;
-        while (*s)
-        {
-            if (*s == 'a')
-                data->flags |= FLAG_a;
-            else if (*s == 'g')
-                data->flags |= FLAG_g;
-            else if (*s == 'u')
-                data->flags |= FLAG_u;
-            else if (*s == 'r')
-                data->flags |= FLAG_r;
-            else if (*s == 'p')
-                data->flags |= FLAG_p;
-            else
-                return (unsupported_char(s));
-            ++s;
-        }
-        return (0);
+	++s;
+	while (*s)
+	{
+		if (*s == 'a')
+			data->flags |= FLAG_a;
+		else if (*s == 'g')
+			data->flags |= FLAG_g;
+		else if (*s == 'u')
+			data->flags |= FLAG_u;
+		else if (*s == 'r')
+			data->flags |= FLAG_r;
+		else if (*s == 'p')
+			data->flags |= FLAG_p;
+		else
+			return (unsupported_char(s));
+		++s;
+	}
+	return (0);
 }
 
-int    retrieve_flags(t_data *data, char **argv)
+int	retrieve_flags(t_data *data, char **argv)
 {
-        while (*argv)
-        {
-            if (**argv != '-')
-                data->file_nb++;
-            else
-                if (active_flags(data ,*argv))
-                    return (1);
-            ++argv;
-        }
-        return (0); 
+	while (*argv)
+	{
+		if (**argv != '-')
+			data->file_nb++;
+		else
+			if (active_flags(data, *argv))
+				return (1);
+		++argv;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 17:54:42 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 17:59:26 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:22:52 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	free_tab(char **s)
 {
-	char **erase;
+	char	**erase;
 
 	if (!s)
-		return;
+		return ;
 	erase = s;
 	while (*s)
 	{

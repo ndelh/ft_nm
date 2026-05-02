@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 17:11:21 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/21 17:33:51 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:43:01 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,9 @@ void	fetch_header_intels(t_data *data, t_current_nm *nm)
 
 void	fetch_first_char_intels(t_data *data, t_current_nm *nm)
 {
-	unsigned char *ident;
+	unsigned char	*ident;
 
 	ident = (unsigned char *)nm->map_begin;
-
 	if (ft_strncmp((char *)ident, ELFMAG, SELFMAG))
 		return (nm_error(data, "this file is not an elf_file"));
 	nm->class = ident[EI_CLASS];

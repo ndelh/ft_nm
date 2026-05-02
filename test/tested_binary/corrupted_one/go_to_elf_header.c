@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_core.c                                          :+:      :+:    :+:   */
+/*   go_to_elf_header.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/04/20 19:45:17 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/05/02 21:35:21 by ndelhota         ###   ########.fr       */
+/*   Created: 2026/05/02 18:59:16 by ndelhota          #+#    #+#             */
+/*   Updated: 2026/05/02 21:14:48 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "nm_core.h"
+#include "corruptor.h"
 
-void	nm_loop(t_data *data)
+
+void	go_to_shstr_tab(t_corrupt *data)
 {
-	char	**file;
+	Elf64_Shdr	*shstr;
+	
+	shstr = (Elf64_Shdr *)data->shdr_begin + data->shstr_index;
+}
 
-	file = data->file_to_nm;
-	while (*file)
-	{
-		data->current_file = *file;
-		init_nm(data);
-		retrieve_symbols(data, data->current_nm);
-		print_result(data, data->current_nm);
-		end_nm(data, data->current_nm);
-		++file;
-	}
+void	go_to_elf_header(t_corrupt *data)
+{
+	Elf64_Ehdr	*head;
+
+	head = (Elf64_Ehdr *)data->file_begin;
+	head->e_shentsize = 312;
+	data->shstr_index = head->e_shstrndx;
+	data->shdr_begin = data->file_begin + head->e_shoff;
+	data->header_nb = head->e_shentsize;
 }

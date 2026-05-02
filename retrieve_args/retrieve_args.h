@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 18:04:19 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 18:05:09 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:24:49 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../ft_nm.h"
 
-int     retrieve_flags(t_data *data, char **argv);
-int     no_file_case(t_data *data);
+int		retrieve_flags(t_data *data, char **argv);
+int		no_file_case(t_data *data);
 
 #endif

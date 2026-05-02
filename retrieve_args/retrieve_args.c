@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 18:05:55 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 18:13:07 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:27:15 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	no_file_case(t_data *data)
 		perror("related args malloc failed");
 		return (1);
 	}
-	ft_memset(tab, 0, sizeof(char *)* 2);
+	ft_memset(tab, 0, sizeof(char *) * 2);
 	s = ft_strdup("a.out");
 	if (!s)
 	{
@@ -35,9 +35,9 @@ int	no_file_case(t_data *data)
 	return (0);
 }
 
-int copy_tab(t_data *data, char **argv)
+int	copy_tab(t_data *data, char **argv)
 {
-	char **tab;
+	char	**tab;
 
 	tab = data->file_to_nm;
 	while (*argv)

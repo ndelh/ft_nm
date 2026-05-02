@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/21 17:55:15 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/21 17:56:49 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:47:27 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	parse_first_char_intel(t_data *data, t_current_nm *nm)
 void	shdr_size_and_index(t_data *data, t_current_nm *nm)
 {
 	if (!nm->section_header_offset && nm->section_header_nb)
-		return (nm_error(data, "eshoff point on beginning of EHDR, not possible"));
+		return (nm_error(data,
+				"eshoff point on beginning of EHDR, not possible"));
 	if (nm->class == ELFCLASS32 && nm->section_header_size != 40)
 		return (nm_error(data, "corrupted section header size for elf 32"));
 	if (nm->class == ELFCLASS64 && nm->section_header_size != 64)
@@ -43,9 +44,11 @@ void	parse_shdr_intels(t_data *data, t_current_nm *nm)
 	if (data->dead_nm)
 		return ;
 	shdr_size_and_index(data, nm);
+	if (nm->section_header_size > nm->section_header_offset)
+		return (nm_error(data, "overlap between shdr and elf header"));
 	if (range_check(data, nm->section_header_offset, nm->section_header_size,
-		nm->section_header_nb, "corrupted shdr range"))
-			return ;
+			nm->section_header_nb, "corrupted shdr range"))
+		return ;
 	type = nm->map_begin + nm->section_header_offset;
 	if (((Elf64_Shdr *)type)->sh_type != SHT_NULL)
 		return (nm_error(data, "first shdr not null"));

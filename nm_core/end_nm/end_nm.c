@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   nm_end.c                                           :+:      :+:    :+:   */
+/*   end_nm.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/20 20:15:01 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/20 20:20:00 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 21:37:01 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	close_all(t_current_nm *nm)
 		munmap(nm->map_begin, nm->file_size);
 }
 
-
 void	clean_current_nm(t_current_nm *nm)
 {
 	t_symbol	*list;
@@ -38,7 +37,7 @@ void	clean_current_nm(t_current_nm *nm)
 		tmp = list;
 		list = list->next;
 		free(tmp->name);
-		free(tmp);	
+		free(tmp);
 	}
 	close_all(nm);
 	free_all(nm);

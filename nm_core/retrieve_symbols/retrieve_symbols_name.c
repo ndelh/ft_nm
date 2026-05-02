@@ -30,8 +30,8 @@ void	parse_retrieve_symtab_content(t_data *data, t_current_nm *nm)
 		"invalid linked strtab content"))
 			return ;
 	nm->sym_name = nm->map_begin + nm->str_sym_name_offset;
-	if (nm->sym_name[0] != 0 || nm->sym_name[nm->str_sym_name_size - 1] != 0)
-		return (nm_error(data, "non enclosed strtable content for symbole name"));
+	if (nm->sym_name[nm->str_sym_name_size - 1] != 0)
+		return (nm_error(data, "syn name table not closed"));
 }
 
 void	retrieve_symbols_name(t_data *data, t_current_nm *nm)
