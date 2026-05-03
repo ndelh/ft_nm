@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 16:32:57 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/28 17:15:23 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/03 20:10:40 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,6 @@ void	test_core(t_data *data)
 {
 	standard_test(data);
 	flag_test(data);
+	mul_test(data);
+	//corruption_test(data);
 }

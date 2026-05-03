@@ -6,7 +6,7 @@
 #    By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 17:08:53 by ndelhota          #+#    #+#              #
-#    Updated: 2026/04/28 17:36:38 by ndelhota         ###   ########.fr        #
+#    Updated: 2026/05/03 20:41:41 by ndelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ SRC := main.c \
        init/init.c \
        init/gen_standard_file_list.c \
        init/gen_standard_test_list.c \
+       init/gen_corrupted_file_list.c \
        init/gen_func_tab.c \
        init/gen_flag_tab.c \
        utils/tab_utils.c \

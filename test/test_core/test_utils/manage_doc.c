@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 12:22:53 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/29 11:40:22 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/03 16:35:53 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	create_mine(t_data *data)
 	if (data->true_nm == -1)
 		return ;
 	data->my_nm = open("my_nm", O_CREAT | O_RDWR | O_TRUNC, 0777);
-	if (data->my_nm == - 1)
+	if (data->my_nm == -1)
 		perror("my_nm file cannot be opened or created");
 }
 
 void	create_true(t_data *data)
 {
 	data->true_nm = open("true_nm", O_CREAT | O_RDWR | O_TRUNC, 0777);
-	if (data->true_nm == - 1)
+	if (data->true_nm == -1)
 		perror("true_nm file cannot be opened or created");
 }
 

@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 22:29:59 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/29 23:32:20 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 23:39:13 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	simple_flags(t_data *data, char **flag_tab)
 int	consult_urandom(t_data *data, int fd, int modulo)
 {
 	unsigned char	c[1];
-	int		nb_read;
-	int		result;
+	int				nb_read;
+	int				result;
 
 	nb_read = read(fd, c, 1);
 	if (nb_read == -1)

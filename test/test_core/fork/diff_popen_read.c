@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/29 13:12:31 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/29 13:43:09 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/03 19:54:39 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	popen_read(t_data *data, char **args, int read_end, int write_end)
 
 int	diff_launch(t_data *data)
 {
-	int	pipe_fd[2];
+	int		pipe_fd[2];
 	pid_t	pid;
 
 	if (pipe(pipe_fd) == -1)
@@ -50,8 +50,8 @@ int	diff_launch(t_data *data)
 
 void	diff_test(t_data *data, t_test *node, char *flags)
 {
-	int	result;
-	int	read_nb;
+	int		result;
+	int		read_nb;
 	char	buff[2];
 
 	result = diff_launch(data);
@@ -73,3 +73,26 @@ void	diff_test(t_data *data, t_test *node, char *flags)
 	close(result);
 }
 
+void	diff_mull_test(t_data *data, char *flags)
+{
+	int		result;
+	int		read_nb;
+	char	buff[2];
+
+	result = diff_launch(data);
+	read_nb = read(result, buff, 1);
+	ft_putstr_fd("multi flag test", 1);
+	if (flags)
+	{
+		ft_putstr_fd(" with the following flags: ", 1);
+		ft_putstr_fd(flags, 1);
+	}
+	ft_putchar_fd(32, 1);
+	if (read_nb == -1)
+		ft_putendl_fd("error while reading from custom popen returned fd", 2);
+	else if (read_nb)
+		ft_putendl_fd("DIFF KO", 1);
+	else
+		ft_putendl_fd("SUCCESS", 1);
+	close(result);
+}

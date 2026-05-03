@@ -31,7 +31,7 @@ void	parse_retrieve_symtab_content(t_data *data, t_current_nm *nm)
 		return ;
 	nm->sym_name = nm->map_begin + nm->str_sym_name_offset;
 	if (nm->sym_name[nm->str_sym_name_size - 1] != 0)
-		return (nm_error(data, "syn name table not closed"));
+		return (nm_error(data, "sym name table not closed"));
 }
 
 void	retrieve_symbols_name(t_data *data, t_current_nm *nm)

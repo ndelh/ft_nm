@@ -6,19 +6,18 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:06:34 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/04/28 16:57:25 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/02 23:41:38 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tester.h"
-
-char	g_diff_path[] = "/usr/bin/nm";
 
 void	init_process(t_data *data)
 {
 	gen_standard_file_list(data);
 	if (data->standard_file_list)
 		gen_standard_test_list(data);
+	gen_corrupted_file_list(data);
 	gen_function_tab(data);
 	gen_flag_tab(data);
 }

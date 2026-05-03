@@ -93,22 +93,21 @@ void	print_result(t_data *data, t_current_nm *nm)
 {
 	t_symbol	*list;
 
-	if (data->file_nb > 1)
-		ft_putchar_fd('\n', 1);
 	if (data->dead_nm)
 		return ;
+	if (data->file_nb > 1)
+		ft_putchar_fd('\n', 1);
 	list = nm->print_list;
-	if (!list || data->file_nb > 1)
+	if (data->file_nb > 1)
 	{
-		if (!list)
-			ft_putstr_fd("nm : ", 1);
 		ft_putstr_fd(data->current_file, 1);
-		if (!list)
-			ft_putstr_fd(": ", 1);
-		else
-			ft_putendl_fd(":", 1);
+		ft_putendl_fd(":", 1);
 	}
 	if (!list)
-		ft_putendl_fd("no symbols", 1);
+	{
+		ft_putstr_fd("nm: ", 1);
+		ft_putstr_fd(data->current_file, 2);
+		ft_putendl_fd(": no symbols", 2);
+	}
 	print_list(data, list, nm);
 }
