@@ -8,6 +8,7 @@
 ft_nm
 
 # Object files
+*.o
 *.ko
 *.obj
 *.elf
@@ -22,6 +23,7 @@ ft_nm
 *.pch
 
 # Libraries
+*.so
 *.lib
 *.a
 *.la
