@@ -8,7 +8,6 @@
 ft_nm
 
 # Object files
-*.o
 *.ko
 *.obj
 *.elf
@@ -30,7 +29,6 @@ ft_nm
 
 # Shared objects (inc. Windows DLLs)
 *.dll
-*.so
 *.so.*
 *.dylib
 
