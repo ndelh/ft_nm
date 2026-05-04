@@ -1,0 +1,14 @@
+0000000000000000 T alloc_data
+0000000000000000 N .debug_abbrev
+0000000000000000 N .debug_line
+0000000000000000 N .debug_str
+                 U ft_end
+                 U ft_memset
+0000000000000070 T main
+0000000000000000 a main.c
+                 U malloc
+                 U nm_loop
+                 U perror
+                 U retrieve_args
+0000000000000000 r .rodata.str1.1
+0000000000000000 t .text
