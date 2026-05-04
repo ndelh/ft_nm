@@ -28,6 +28,8 @@ unsigned char	weak_case(uint16_t section_index, unsigned char info)
 
 unsigned char	is_special(uint16_t section_index, unsigned char info)
 {
+	if (ELF64_ST_BIND(info) == STB_GNU_UNIQUE)
+		return ('u');
 	if (ELF64_ST_BIND(info) == STB_WEAK)
 		return (weak_case(section_index, info));
 	else if (section_index == SHN_UNDEF)

@@ -23,6 +23,7 @@ void	fill_list(char **list, t_data *data)
 	list[6] = gen_tab_line("tested_binary/libextnet.so", data);
 	list[7] = gen_tab_line("tested_binary/retrieve_symbols.o", data);
 	list[8] = gen_tab_line("tested_binary/retrieve_symbols_name.o", data);
+	list[9] = gen_tab_line("tested_binary/ft_vox", data);
 }
 
 char	**alloc_file_list(void)
