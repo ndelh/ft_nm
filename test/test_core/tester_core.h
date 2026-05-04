@@ -20,6 +20,9 @@ void	standard_test(t_data *data);
 void	flag_test(t_data *data);
 void	mul_test(t_data *data);
 
+//corruption test
+void	corruption_test(t_data *data);
+
 //fork
 void	true_nm_fork(t_test *test_node, t_data *data);
 void	true_nm_fork_mul(t_data *data);

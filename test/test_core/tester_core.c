@@ -17,5 +17,5 @@ void	test_core(t_data *data)
 	standard_test(data);
 	flag_test(data);
 	mul_test(data);
-	//corruption_test(data);
+	corruption_test(data);
 }

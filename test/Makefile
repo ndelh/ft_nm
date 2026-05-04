@@ -6,7 +6,7 @@
 #    By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 17:08:53 by ndelhota          #+#    #+#              #
-#    Updated: 2026/05/03 20:41:41 by ndelhota         ###   ########.fr        #
+#    Updated: 2026/05/04 07:40:06 by ndelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC := main.c \
        utils/list_utils.c \
        test_core/tester_core.c \
        test_core/standard/standard_test.c \
+       test_core/corrupted/corruption_test.c \
        test_core/fork/true_nm_fork.c \
        test_core/fork/diff_popen_read.c \
        test_core/fork/my_nm_fork.c \
@@ -40,6 +41,7 @@ OBJ := $(addprefix $(OBJDIR)/, $(OBJ))
 LIB := lib/libft/libft.a \
 
 all : $(LIB) $(OBJ) $(NAME)
+	(cd ../ && make) ; mv ../ft_nm ft_nm
 
 $(NAME) : $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) -lreadline
@@ -58,6 +60,9 @@ clean :
 fclean : clean 
 	@rm -f $(NAME)
 	@make -C lib/libft fclean
+	@if [ -f ft_nm ]; then \
+	rm ft_nm; \
+	fi 
 
 re : fclean all
 

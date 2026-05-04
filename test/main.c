@@ -6,7 +6,7 @@
 /*   By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/28 11:06:34 by ndelhota          #+#    #+#             */
-/*   Updated: 2026/05/02 23:41:38 by ndelhota         ###   ########.fr       */
+/*   Updated: 2026/05/04 07:31:57 by ndelhota         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,7 @@ int	main(int ac, char **argv, char **envp)
 	if (data->standard_test_list)
 		test_core(data);
 	ft_end(&data);
+	unlink("my_nm");
+	unlink("true_nm");
 	return (0);
 }
