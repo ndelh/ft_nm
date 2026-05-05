@@ -34,5 +34,6 @@ void	diff_mull_test(t_data *data, char *flags);
 //utils
 void	create_doc(t_data *data);
 void	close_doc(t_data *data);
+void	printfile_name(char *s);
 
 #endif

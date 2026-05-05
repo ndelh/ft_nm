@@ -23,6 +23,11 @@
 # include <unistd.h>
 # include "lib/libft/libft.h"
 
+# define RED   "\x1B[31m"
+# define GRN   "\x1B[32m"
+# define BLUE	"\x1B[94m"
+# define RESET "\x1B[0m"
+
 typedef struct s_pipe
 {
 	int				read;
@@ -75,5 +80,6 @@ void	free_list(t_test *list);
 
 //test_core
 void	test_core(t_data *data);
-
+//print
+void	ft_putendl_color(char *color, char *msg, int fd);
 #endif

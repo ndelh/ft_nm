@@ -6,7 +6,7 @@
 #    By: ndelhota <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/10 17:08:53 by ndelhota          #+#    #+#              #
-#    Updated: 2026/05/04 07:42:22 by ndelhota         ###   ########.fr        #
+#    Updated: 2026/05/05 10:04:00 by ndelhota         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ OBJ := $(addprefix $(OBJDIR)/, $(OBJ))
 LIB := lib/libft/libft.a \
 
 all : $(LIB) $(OBJ) $(NAME)
-	@(cd ../ && make) ; mv ../ft_nm ft_nm
+	@(cd ../ && make) ; cp ../ft_nm ft_nm
 
 $(NAME) : $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) $(LIB) -o $(NAME) -lreadline

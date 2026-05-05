@@ -12,6 +12,13 @@
 
 #include "../tester_core.h"
 
+void	ft_putendl_color(char *color, char *msg, int fd)
+{
+	ft_putstr_fd(color, fd);
+	ft_putendl_fd(msg, fd);
+	ft_putstr_fd(RESET, fd);
+}
+
 void	popen_read(t_data *data, char **args, int read_end, int write_end)
 {
 	close(read_end);
@@ -57,7 +64,7 @@ void	diff_test(t_data *data, t_test *node, char *flags)
 	result = diff_launch(data);
 	read_nb = read(result, buff, 1);
 	ft_putstr_fd("tested binary: ", 1);
-	ft_putstr_fd(node->prog_path, 1);
+	printfile_name(node->prog_path);
 	if (flags)
 	{
 		ft_putstr_fd(" with the following flags: ", 1);
@@ -67,9 +74,9 @@ void	diff_test(t_data *data, t_test *node, char *flags)
 	if (read_nb == -1)
 		ft_putendl_fd("error while reading from custom popen returned fd", 2);
 	else if (read_nb)
-		ft_putendl_fd("DIFF KO", 1);
+		ft_putendl_color(RED, "DIFF KO", 1);
 	else
-		ft_putendl_fd("SUCCESS", 1);
+		ft_putendl_color(GRN, "SUCCESS", 1);
 	close(result);
 }
 
@@ -91,8 +98,8 @@ void	diff_mull_test(t_data *data, char *flags)
 	if (read_nb == -1)
 		ft_putendl_fd("error while reading from custom popen returned fd", 2);
 	else if (read_nb)
-		ft_putendl_fd("DIFF KO", 1);
+		ft_putendl_color(RED, "DIFF KO", 1);
 	else
-		ft_putendl_fd("SUCCESS", 1);
+		ft_putendl_color(GRN, "SUCCESS", 1);
 	close(result);
 }

@@ -48,7 +48,7 @@ void	fork_wait(t_data *data, char **args)
 		corrupted_file_child(data, args);
 	waitpid(0, &wait_result, 0);
 	if (wait_result != 0)
-		ft_putendl_fd("congratz for the crash", 1);
+		ft_putendl_color(RED, "congratz for the crash", 1);
 }
 
 void	corruption_test(t_data *data)
@@ -63,7 +63,8 @@ void	corruption_test(t_data *data)
 	args = alloc_args(data);
 	while (*test_files)
 	{
-		ft_putendl_fd(*test_files, 1);
+		printfile_name(*test_files);
+		ft_putchar_fd('\n', 1);
 		args[1] = (*test_files);
 		fork_wait(data, args);
 		++test_files;
