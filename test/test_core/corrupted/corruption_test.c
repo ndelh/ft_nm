@@ -50,9 +50,7 @@ void	fork_wait(t_data *data, char **args)
 	if (WIFSIGNALED(wait_result))
     {
         if (WTERMSIG(wait_result) == SIGSEGV)
-        {
             ft_putendl_color(RED, "congratz for the crash (SIGSEGV)", 1);
-        }
     }
 }
 
