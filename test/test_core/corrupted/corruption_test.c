@@ -47,8 +47,13 @@ void	fork_wait(t_data *data, char **args)
 	if (!pid)
 		corrupted_file_child(data, args);
 	waitpid(0, &wait_result, 0);
-	if (wait_result != 0)
-		ft_putendl_color(RED, "congratz for the crash", 1);
+	if (WIFSIGNALED(wait_result))
+    {
+        if (WTERMSIG(wait_result) == SIGSEGV)
+        {
+            ft_putendl_color(RED, "congratz for the crash (SIGSEGV)", 1);
+        }
+    }
 }
 
 void	corruption_test(t_data *data)

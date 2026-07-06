@@ -14,8 +14,9 @@
 # define TESTER_H
 
 # include <sys/types.h>
-# include <fcntl.h>
 # include <sys/wait.h>
+# include <fcntl.h>
+# include <signal.h>
 # include <stdio.h>
 # include <string.h>
 # include <errno.h>
